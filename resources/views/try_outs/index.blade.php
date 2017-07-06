@@ -24,9 +24,9 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Title</th>
-                                <th>Content</th>
-                                <th>Module Id</th>
+                                <th>Materi Id</th>
+                                <th>Question Id</th>
+                                
                                 <th>Created at</th>
                                 <th>Updated at</th>
                             </tr>

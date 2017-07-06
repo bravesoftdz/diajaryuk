@@ -10,12 +10,7 @@
                     <!-- <div class="row"> -->
 
                         <!-- <h3 class="col-md-4 title"> Matery </h3> -->
-                        Matery
-                        <button type="submit" id="add" class="btn btn-success">
-                            <i class="material-icons">add</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                        
+                        Questions
                     <!-- </div> -->
                 </div>
 
@@ -24,11 +19,14 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Title</th>
-                                <th>Content</th>
-                                <th>Module Id</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
+                                <th>type</th>
+                                <th>question</th>
+                                <th>answer 1</th>
+                                <th>answer 2</th>
+                                <th>answer 3</th>
+                                <th>answer 4</th>
+                                <th>point</th>
+                                
                             </tr>
                         </thead>
                         <tbody>

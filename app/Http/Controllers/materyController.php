@@ -30,7 +30,7 @@ class materyController extends Controller
      */
     public function create()
     {
-        //
+        return view('materies/create');
     }
 
     /**
