@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="teguh">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Diajaryuk - where learning become fun!</title>
 
     <!-- Bootstrap Core CSS -->
 
@@ -37,7 +37,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -925,6 +925,19 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ url('/').'/dist/js/sb-admin-2.js'}}"></script>
+    
+    <!-- bower components -->
+    <script src="{{url('/')}} /bower_components/underscore/underscore.js"></script>
+    <script src="{{url('/')}} /bower_components/backbone/backbone.js"></script>
+    <!-- main scripts -->
+    <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
+    <script src="{{ url('/scripts/modules') }} /materies/views/parentView.js "></script>
+    
+    <script src="{{ url('/scripts/modules') }} /materies/routers/router.js"></script>
+
+
 
 </body>
 

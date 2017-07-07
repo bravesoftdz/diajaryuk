@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('course')->group(function(){
+	Route::get('/overview', 'courseController@index')->name('overview');	
+});
+
 Route::prefix('admin')->group(function () {
     // Route::get('/materies', 'materyController@index' );
 	Route::prefix('materies')->group(function () {

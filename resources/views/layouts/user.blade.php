@@ -9,17 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>Diajaryuk - where learning become fun!</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/').'/vendor/bootstrap/css/bootstrap.min.css'}}" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
+    <link href="{{url('/').'/css/freelancer.min.css'}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="{{url('/').'/vendor/font-awesome/css/font-awesome.min.css'}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">   
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,7 +42,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">Start Course</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,6 +60,9 @@
                     <li class="page-scroll">
                         <a href="#contact">Contact</a>
                     </li>
+                    <li class="page-scroll">
+                        <a href="{{ url('/login') }}">Login</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -68,23 +71,23 @@
     </nav>
 
     <!-- Header -->
-    <header>
+    <!-- <header>
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/profile.png" alt="">
                     <div class="intro-text">
-                        <h1 class="name">Start Bootstrap</h1>
+                        <h1 class="name">Diajaryuk</h1>
                         <hr class="star-light">
-                        <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+                        <span class="skills">Diajaryuk - Where Learning Become Fun!</span>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
 
     <!-- Portfolio Grid Section -->
-    <section id="portfolio">
+    <!-- <section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -155,10 +158,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- About Section -->
-    <section class="success" id="about">
+    <!-- <section class="success" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -180,10 +183,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Contact Section -->
-    <section id="contact">
+    <!-- <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -193,8 +196,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -235,17 +236,19 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+    
+    @yield('content')
 
     <!-- Footer -->
-    <footer class="text-center">
+    <!-- <footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
                         <h3>Location</h3>
-                        <p>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</p>
+                        <p>Made with love In 
+                            <br>Bandung, Indonesia</p>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>Around the Web</h3>
@@ -268,8 +271,8 @@
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        <h3>About Diajaryuk</h3>
+                        <p>Diajaryuk is free e-learning course for gaining your potention!
                     </div>
                 </div>
             </div>
@@ -278,12 +281,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2016
+                        Copyright &copy; Diajaryuk 2017
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
@@ -293,7 +296,7 @@
     </div>
 
     <!-- Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -514,23 +517,23 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src=" {{url('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="{{ url('js/jqBootstrapValidation.js')}}"></script>
+    <script src="{{url('js/contact_me.js')}}"></script>
 
     <!-- Theme JavaScript -->
-    <script src="js/freelancer.min.js"></script>
+    <script src="{{url('js/freelancer.min.js')}}"></script>
 
 </body>
 
