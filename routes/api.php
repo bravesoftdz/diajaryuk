@@ -65,4 +65,12 @@ Route::prefix('questions')->group(function () {
 	Route::put('/{id}', 'apiQuestionController@update' );
 });
 
+Route::prefix('modules')->group(function () {
+    Route::get('/', 'apiModulesController@index' );
+    Route::post('/', 'apiModulesController@store' );
+	Route::get('/{id}', 'apiModulesController@getId' );
+	Route::delete('/{id}', 'apiModulesController@delete' );
+	Route::put('/{id}', 'apiModulesController@update' );
+});
+
 

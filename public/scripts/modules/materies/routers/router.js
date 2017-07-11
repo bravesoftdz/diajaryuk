@@ -1,4 +1,4 @@
-/*global Backbone */
+
 var app = app || {};
 app.routers = app.routers || {};
 (function () {
@@ -14,7 +14,32 @@ app.routers = app.routers || {};
 			
 		},
 		onCreate: function(){
-			new app.views.createView({el: $("#materies") });
+			try{
+				app.collections.modules.fetch({
+					success:function(response, models, opt){
+
+						new app.views.createView({
+							el: $("#materies"),
+							collection: {
+								modules: response,
+							}
+						});
+
+					    var quill = new Quill('#content', {
+				            theme: 'snow'
+				        });
+				    
+					},
+					error: function(){
+
+					}
+				});
+					
+			}catch(err){
+				console.log(err);
+				alert(err);
+			}
+			
 		}
 
 	});

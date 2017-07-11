@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <div id="materies"></div>
 
 <script type="text/template" id="materies_index">
@@ -64,21 +66,24 @@
                     
                     <div class="form-group">
                         <div class="col-md-12">
-                            <textarea class="form-control" rows="9" id="content" placeholder="e.g Content Goes Here"></textarea>
+                            <!-- <textarea class="form-control" rows="9" id="content" placeholder="e.g Content Goes Here"></textarea> -->
+                            <div id="content" class="ql-editor ql-blank"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6">
                             <select id="module_id" class="form-control" >
-                                
+                                <% for(var i = 0; i < modules.length; i++){ %>
+                                    <option value="<%= modules.models[i].get('id') %>"><%= modules.models[i].get('name')  %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6">
-                            <button class="btn btn-success">
+                            <button class="btn btn-success" id="btnSave">
                                 SAVE
                             </button>
                         </div>
