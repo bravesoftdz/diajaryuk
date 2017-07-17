@@ -5,14 +5,19 @@ app.routers = app.routers || {};
 	'use strict';
 	var Router = Backbone.Router.extend({
 		routes: {
-			'/materies'			: 'index',
-			'/materies/create'	: 'onCreate',
-			'/materies/create/:id': 'onEdit',
+			'overview'			: 'index',
+			// 'create'	: 'onCreate',
+			// 'create/:id': 'onEdit',
 		},
 		index: function(){
-			console.log('router called');
-			new app.views.parentView({el: $("#materies") });
-			
+			new app.views.overview.list({
+                el: $("#overview"),
+                collection: {
+                    modules: app.collections.modules,
+                    materies: app.collections.materies
+                }
+            });
+            console.log('im called');
 		},
 		onCreate: function(){
 			try{
@@ -84,6 +89,6 @@ app.routers = app.routers || {};
 
 	});
 
-	app.Router = new Router();
-	Backbone.history.start();
+	app.userRouter = new Router();
+	// Backbone.history.start();
 })();

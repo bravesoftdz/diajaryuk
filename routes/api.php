@@ -68,6 +68,7 @@ Route::prefix('questions')->group(function () {
 Route::prefix('modules')->group(function () {
     Route::get('/', 'apiModulesController@index' );
     Route::post('/', 'apiModulesController@store' );
+    Route::get('/{id}/materies', 'apiModulesController@getIdJoinMateries' );
 	Route::get('/{id}', 'apiModulesController@getId' );
 	Route::delete('/{id}', 'apiModulesController@delete' );
 	Route::put('/{id}', 'apiModulesController@update' );

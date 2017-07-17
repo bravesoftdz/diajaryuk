@@ -13,6 +13,16 @@ app.views = app.views || {};
 		render: function(){
 			var template = _.template( $('#materies_index').html() );
 			this.$el.html(template);
+			// this.$el.append('<div></div>')
+
+			var child = new app.views.materies.list({
+				el: this.$("#listPlace"),
+				collection: {
+					materies: app.collections.materies,
+					modules	: app.collections.modules
+				} 
+			});
+			
 			return this;
 		}
 	});

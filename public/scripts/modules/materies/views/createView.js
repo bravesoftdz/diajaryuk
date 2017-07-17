@@ -8,14 +8,26 @@ app.views = app.views || {};
 	app.views.createView = Backbone.View.extend({
 		
 		initialize: function(){
-			console.log(this.collection.modules);
+			// console.log(this.model);
 			this.render();
 		},
 		render: function(){
 			var template = _.template( $('#materies_create').html() );
-			this.$el.html( template({
-				modules: this.collection.modules,
-			}) );
+			
+			if( typeof(this.model) !== 'undefined' ){
+				this.$el.html( template({
+					modules: this.collection.modules,
+					model: this.model.toJSON()
+				}) );
+
+				this.$("#module_id").attr('selected','selected');	
+			}else{
+				this.$el.html( template({
+					modules: this.collection.modules,
+
+				}) );
+			}
+
 			return this;
 		},
 		events: {
@@ -32,6 +44,14 @@ app.views = app.views || {};
 			if(tmp.title !== '' && tmp.content !== '' && tmp.module_id !== ''){
 				try{
 					
+					this.collection.materies.create(tmp, { 
+						wait: true,
+						success: function(){
+							console.log('data saved');
+							app.Router.navigate('/', true);
+						},
+					});
+
 				}catch(err){
 					console.log(err);
 					alert(err);
@@ -40,7 +60,7 @@ app.views = app.views || {};
 				alert('you need to full fill all data !');
 			}
 
-			console.log(tmp);
+			console.log(tmp, this.collection.materies);
 		},
 	});
 })(jQuery);

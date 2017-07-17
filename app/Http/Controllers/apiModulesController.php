@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Module;
+use App\Matery;
 use Illuminate\Http\Request;
 
 class apiModulesController extends Controller
@@ -44,6 +45,63 @@ class apiModulesController extends Controller
 	    	];
 
 	    }
+    }
+
+    public function getIdJoinMateries($id){
+
+        $Module = Module::find($id);
+        $Matery = Matery::where('module_id', $id)->get();
+        if($Module !== null ){
+
+            $Materies = [
+                '_meta' => [
+                    'status' => "SUCCESS",
+                    'userMessage' => 'Data Found',
+                    'count' => count($Matery)
+                ],
+                'result' => $Matery
+            ];
+
+            $Module->materies = $Matery;
+
+            return [ 
+                '_meta'=>[
+                    'status'=> "SUCCESS",
+                    'userMessage'=> "Data found"
+                ],
+                'result'=>$Module
+            ];  
+        }
+        else{
+            
+            if($id == 'all'){
+                $Module = Module::all();
+                // $Matery = Matery::all();
+                foreach ($Module as $key => $value) {
+                    $value->materies = Matery::where('module_id', $value->id )->get();
+                }
+
+                return [ 
+                  
+                    '_meta'=>[
+                            'status'=> "SUCCESS",
+                            'userMessage'=> "Data found"
+                        ],
+                    'result'=>$Module
+                
+                ];
+
+            }
+
+            return [ 
+                '_meta'=>[
+                    'status'=> "SUCCESS",
+                    'userMessage'=> "Data not found"
+                ],
+                'result'=>$Module
+            ];
+
+        }
     }
 
     public function store(Request $req)

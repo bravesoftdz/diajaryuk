@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('course')->group(function(){
-	Route::get('/overview', 'courseController@index')->name('overview');	
+	Route::get('/', 'courseController@index')->name('overview');	
 });
 
 Route::prefix('admin')->group(function () {
@@ -43,6 +43,13 @@ Route::prefix('admin')->group(function () {
 	Route::prefix('try_outs')->group(function () {
 		Route::get('/', 'tryOutController@index');
 		Route::get('/create', 'tryOutController@create');
+	});
+
+	Route::prefix('modules')->group(function () {
+		Route::get('/', 'modulesController@index');
+		Route::get('/create', 'modulesController@create');
+		Route::get('/create/{id}', 'modulesController@edit');
+		
 	});
 
     

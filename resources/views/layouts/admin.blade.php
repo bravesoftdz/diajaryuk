@@ -354,21 +354,30 @@
     <script src="{{ url('/').'/vendor/morrisjs/morris.min.js'}} "></script>
     <script src="{{ url('/').'/data/morris-data.js'}}"></script>
 
+    <!-- <script src="https://unpkg.com/vue"></script> -->
+
     <!-- Custom Theme JavaScript -->
     <script src="{{ url('/').'/dist/js/sb-admin-2.js'}}"></script>
     
     <!-- bower components -->
     <script src="{{url('/')}} /bower_components/underscore/underscore.js"></script>
     <script src="{{url('/')}} /bower_components/backbone/backbone.js"></script>
+    <script src="{{ url('/bower_components/vue/dist/vue.js') }}"></script>
     <!-- main scripts -->
     <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
-    <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
-    <script src="{{ url('/scripts/modules') }} /materies/views/parentView.js "></script>
-    
-    <!--  -->
     <script src="{{ url('/scripts/modules').'/modules/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /modules/collections/collection.js "></script>
+    
+    <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
+    <script src="{{ url('/scripts/modules/materies/views/itemView.js') }}"></script>
+    <script src="{{ url('/scripts/modules/materies/views/listView.js') }}"></script>
+    <script src="{{ url('/scripts/modules') }} /materies/views/parentView.js "></script>
+
+    <!-- vue modules -->
+    <script src="{{ url('/scripts/modules/modules/app.js') }}"></script>
+
+    
     
     <script src="{{ url('/scripts/modules') }} /materies/routers/router.js"></script>
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->

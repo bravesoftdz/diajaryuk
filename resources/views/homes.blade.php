@@ -22,13 +22,16 @@
                             </div>
                             <div class="col-md-8">
                                 
-                                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."</p>
+                                <p>Hai, Selamat Datang!</p>
+
+                                <p>Perkenalkan, saya mang ujang. dari sini, saya akan memandu teman-teman semua untuk belajar bahasa inggris dengan cara yang baru. cara yang lebih elegant, modern, dan menyenangkan. Silahkan klik tombol next untuk melihat konten pembelajaran yang akan ada pelajari. Selamat bersenang-senang! hohoho ... </p>
                                  
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-2 pull-right">
-                                <button class="btn btn-success form-control"> NEXT </button>
+                                <!-- <button class="btn btn-success form-control"> NEXT </button> -->
+                                <a class="btn btn-success form-control" href="{{url('/course')}}"> NEXT </a>
                             </div>
                         </div>
                     </div>
