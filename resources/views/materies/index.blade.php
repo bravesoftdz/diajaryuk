@@ -3,7 +3,9 @@
 @section('content')
 
 
-<div id="materies"></div>
+<div id="materies">
+    hai
+</div>
 
 <script type="text/template" id="materies_index">
     <div class="row">

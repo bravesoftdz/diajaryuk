@@ -2,22 +2,22 @@
 
 @section('content')
 
-<div class="row" id="module-index" >
+<div class="row"  >
     <div class="col-md-12 ">
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="item-place">
             <div class="panel-heading">
                 <!-- <div class="row"> -->
                     <div class="row">
                         <div class="col-md-12">
-                            Matery        
+                            <label><h3>Modules</h3></label>
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <div class="col-md-3">
-                            <a href="#create" class="btn btn-success">
-                                Add
-                            </a>        
+                    <div class="row" >
+                        <div class="col-md-12">
+                            <label>Input new modules</label>
+                            <input type="input" v-model='newModule.name' class="form-controll" name="inputModule" id="inputModule" @keyup.13 = "saveOnClick()">
+                            <button class="btn btn-success" @click="saveOnClick()"> Save </button>
                         </div>
                     </div>
                     
@@ -35,15 +35,10 @@
                         </tr>
 
                     </thead>
-                    <tbody id="item-place" >
+                    <tbody >
                         	<tr :modules.sync="modules" v-for="module in modules" is="module-item" :id='module.id' :modules='modules' :module='module' :name = 'module.name' ></tr>
                     </tbody>
-                </table>
-
-  
-
-                
-                
+                </table>              
             </div>
         </div>
     </div>
@@ -58,9 +53,7 @@
 	</tr>    		
 </template>
 
-<template id="modal-template" >
-	
-</template>
+
 
 
 @endsection

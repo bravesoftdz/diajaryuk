@@ -15,7 +15,8 @@
 
     <!-- <link href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> -->
     <link href="{{ url('/').'/vendor/bootstrap/css/bootstrap.min.css' }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.quilljs.com/1.2.6/quill.snow.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.quilljs.com/1.2.6/quill.snow.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/quill.snow.css') }}">
     <!-- MetisMenu CSS -->
     <!-- <link href="{{asset('vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet"> -->
     <link href="{{ url('/').'/vendor/metisMenu/metisMenu.min.css' }}" rel="stylesheet">
@@ -289,6 +290,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="{{ url('/admin/modules') }}"><i class="fa fa-table fa-fw"></i> Modules </a>
+                        </li>
+
+                        <li>
                             <a href="{{ url('/admin/materies') }}"><i class="fa fa-table fa-fw"></i> Materi</a>
                         </li>
                         <!-- <li>
@@ -302,6 +307,9 @@
                                 </li>
                                 <li>
                                     <a href="{{url('/admin/quizes')}}">Quizes</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/admin/questions')}}">Questions</a>
                                 </li>
                                 <!-- <li>
                                     <a href="notifications.html">Notifications</a>
@@ -332,13 +340,14 @@
                 <!-- /.col-lg-12 -->
             </div>
             
-            @yield('content');
+            @yield('content')
             
         </div>
 
     </div>
     <!-- /#wrapper -->
-    <script src="https://cdn.quilljs.com/1.2.6/quill.js"></script>
+    <!-- <script src="https://cdn.quilljs.com/1.2.6/quill.js"></script> -->
+    <script src="{{ url('/js/quill.js') }}"></script>
     <!-- jQuery -->
     <script src="{{ url('/').'/vendor/jquery/jquery.min.js'}}"></script>
 
@@ -363,11 +372,16 @@
     <script src="{{url('/')}} /bower_components/underscore/underscore.js"></script>
     <script src="{{url('/')}} /bower_components/backbone/backbone.js"></script>
     <script src="{{ url('/bower_components/vue/dist/vue.js') }}"></script>
+    
     <!-- main scripts -->
     <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
     <script src="{{ url('/scripts/modules').'/modules/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /modules/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/questions/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /questions/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/answers/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /answers/collections/collection.js "></script>
     
     <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
     <script src="{{ url('/scripts/modules/materies/views/itemView.js') }}"></script>
