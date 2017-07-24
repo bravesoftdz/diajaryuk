@@ -7,22 +7,45 @@ app.models = app.models || {};
 	app.models.questions = Backbone.Model.extend({
 		urlRoot: 'http://localhost/diajaryuk/public/api/questions',
 		initialize(){
-
+			this.on('fetch', this.onFetch , this );
 		},
-		getAnswers(question_id){
+		onFetch(){
+			console.log('onFetch called')
+		},
+		getAnswer(callback){
 			var id = this.get('id');
 			var _this = this;
 			app.collections.answers.fetch({
 				success(col, response, opt){
-					console.log( col.get({question_id: id}) , id )
-					_this.answer = col.get({id: id}); 
-					return col.get({id: id})
+					var new_col = col.models.filter(function(obj){
+						// console.log(obj.get('question_id') == id)
+						return obj.get('question_id') == id; 
+					})
+					// console.log( col.get({question_id: id}) , id )
+					// _this.answer = col.get({question_id: id});
+					// console.log({col, response, opt} , new_col)
+					_this.answer = new_col[0];
+					callback( new_col[0] ) 
+					
 				},
 				error(err){
 					console.log(err)
 				}
 			})
 		},
+		postAnswer(obj){
+			app.collections.answers.create(
+				obj,{
+				success(col, response, opt){
+					console.log('answers saved', {
+						col, response, opt
+					})
+				},
+				error(err){
+					console.log(err)
+				}
+			});
+		}
 
 	});
 })();

@@ -41,7 +41,7 @@ app.views.materies = app.views.materies || {};
 		btnEditOnClick:function(){
 			console.log( "on edit",this.model);
 			var id = this.model.get('id');
-			app.Router.navigate('create/'+id , true);
+			app.Router.navigate('materies/create/'+id , true);
 
 
 		},

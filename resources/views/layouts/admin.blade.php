@@ -294,7 +294,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ url('/admin/materies') }}"><i class="fa fa-table fa-fw"></i> Materi</a>
+                            <a href="{{ url('/admin/materies#/materies') }}"><i class="fa fa-table fa-fw"></i> Materi</a>
                         </li>
                         <!-- <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Try outs </a>
@@ -382,6 +382,8 @@
     <script src="{{ url('/scripts/modules') }} /questions/collections/collection.js "></script>
     <script src="{{ url('/scripts/modules').'/answers/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /answers/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/try_outs/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /try_outs/collections/collection.js "></script>
     
     <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
     <script src="{{ url('/scripts/modules/materies/views/itemView.js') }}"></script>

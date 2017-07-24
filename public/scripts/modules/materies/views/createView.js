@@ -48,7 +48,7 @@ app.views = app.views || {};
 						wait: true,
 						success: function(){
 							console.log('data saved');
-							app.Router.navigate('/', true);
+							app.Router.navigate('materies', true);
 						},
 					});
 

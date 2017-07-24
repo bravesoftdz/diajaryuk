@@ -5,9 +5,9 @@ app.routers = app.routers || {};
 	'use strict';
 	var Router = Backbone.Router.extend({
 		routes: {
-			'/materies'			: 'index',
-			'/materies/create'	: 'onCreate',
-			'/materies/create/:id': 'onEdit',
+			'materies'			: 'index',
+			'materies/create'	: 'onCreate',
+			'materies/create/:id': 'onEdit',
 		},
 		index: function(){
 			console.log('router called');

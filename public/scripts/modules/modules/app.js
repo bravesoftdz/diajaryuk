@@ -136,10 +136,10 @@ app.collections.questions.fetch({
 
 		Vue.component('question-item',{
 			template: '#question-item-template',
-			props: [ 'id','name', 'question', 'questions' ],
+			props: [ 'id','name', 'answer', 'question', 'questions' ],
 			methods: {
 				editOnClick: function(question){
-					// console.log('edit clicked', question);
+					var _this = this;
 					collection.fetch({
 						success(col, response, opt){
 							
@@ -147,9 +147,11 @@ app.collections.questions.fetch({
 							console.log(tmp)
 
 							app.vue.questions.newQuestion = tmp.toJSON();
-							var answer = tmp.getAnswers();
-							console.log(answer);
-							$("#create-item").modal('toggle');
+							
+							tmp.getAnswer(function(jawaban){
+								app.vue.questions.answer = jawaban.get('answer');
+								$("#create-item").modal('toggle');
+							});
 						},	
 						error(err){
 							console.log(err)
@@ -192,7 +194,7 @@ app.collections.questions.fetch({
 			el: "#question_place",
 			data: {
 				questions: collection.toJSON(),
-				// answers: 
+				answer: '', 
 				newQuestion: {
 					question_type: 'PG', //pilihan Ganda
 					question: '',
@@ -220,11 +222,53 @@ app.collections.questions.fetch({
 				store(){
 					console.log(this.newQuestion)
 					var _this = this;
+					if(_this.answer == ""){
+						alert('you need to choose right answer first!')
+						return false;
+					}
+					if( this.newQuestion.question == '' ||  this.newQuestion.answer_1 == '' || this.newQuestion.answer_2 == '' || this.newQuestion.answer_3 == '' || this.newQuestion.answer_4 == ''  ){
+						alert('you need to fulfill the whole data first!')
+						return false;
+					}
 					collection.create(
 						this.newQuestion,
 						{
-							success(){
-								console.log('success create');
+							success(col, response, opt){
+								console.log('success create',{
+									col,response,opt
+								});
+
+								console.log(_this.answer)
+								
+								var id = response.result.id ;//col.get('id');
+								
+								col.getAnswer(function(jawaban){
+									if(typeof(jawaban) == "undefined"){ //new
+										console.log({
+											question_id: id,
+											answer: _this.answer
+										})
+
+										//untuk bisa update postAnswer ini kita harus kirim ID.
+										col.postAnswer({
+											question_id: id,
+											answer: _this.answer
+										});
+
+									}else{ // edit
+
+										col.postAnswer({
+											id: jawaban.get('id'),
+											question_id: id,
+											answer: _this.answer
+										});										
+
+									}
+								})
+
+								
+
+								
 								_this.getAll();
 								$("#create-item").modal('toggle');
 							},
@@ -247,6 +291,7 @@ app.collections.questions.fetch({
 				},
 				modalOnHide(){
 					console.log('modal hidden');
+					this.answer ='';
 					this.newQuestion = {
 						question_type: 'PG', //pilihan Ganda
 						question: '',
@@ -270,3 +315,214 @@ app.collections.questions.fetch({
 	}
 })
 
+
+app.collections.materies.fetch({
+	success(materies,response,opt){
+
+		app.collections.questions.fetch({
+			success(questions,response,opt){
+				
+				app.collections.try_outs.fetch({
+					success(try_outs,response,opt){
+
+						Vue.component('try_out-item',{
+							template: '#try_out-item-template',
+							props: [ 'id','question', 'materi', 'try_out', 'try_outs' ],
+							methods: {
+								editOnClick: function(try_out){
+									/*var _this = this;
+									collection.fetch({
+										success(col, response, opt){
+											
+											var tmp = col.get({id: question.id})
+											console.log(tmp)
+
+											app.vue.questions.newQuestion = tmp.toJSON();
+											
+											tmp.getAnswer(function(jawaban){
+												app.vue.questions.answer = jawaban.get('answer');
+												$("#create-item").modal('toggle');
+											});
+										},	
+										error(err){
+											console.log(err)
+										}
+									})*/
+								},
+								deleteOnClick: function(try_out){
+									
+									var _this = this;
+									//hapus di local
+									app.vue.try_outs.try_outs = app.vue.try_outs.try_outs.filter(function(obj){
+										return obj.id !== try_out.id
+									})
+
+									//hapus di server
+									try_outs.fetch({
+										success(col, response, opt){
+											col.get({id: try_out.id}).destroy({
+												success(data, response, opt){
+													console.log(response._meta.userMessage)
+												},
+												error(err){
+													console.log(err)
+												}
+											});
+										},	
+										error(err){
+											console.log(err)
+										}
+									})
+									
+								}
+							},
+						});
+
+						app.vue.try_outs = new Vue({
+							el: '#try_out_place',
+							data: {
+								materies: materies.toJSON(),
+								questions: questions.toJSON(),
+								try_outs: try_outs.toJSON(),
+								newTryOut: {
+									matery_id: '',
+									question_id:''
+								}
+							},
+							methods:{
+								getAll(){
+									var _this = this;
+									try_outs.fetch().then((response)=>{
+										_this.try_outs = response.result ;
+									});
+								},
+								store(){
+									console.log(this.newTryOut);
+									try_outs.create(
+										this.newTryOut,
+										{
+											success(){
+												console.log('success')
+												_this.getAll();
+												$("#create-item").modal('toggle');
+											},
+											error(err){
+												console.log(err);
+												_this.getAll();
+												$("#create-item").modal('toggle');
+											}
+									});
+
+								}
+							}
+						});
+
+
+
+					},
+					error(err){
+						console.log(err)
+					}
+				})
+
+			},
+			
+			error(err){
+				console.log(err)
+			}			
+		})
+
+	},
+	error(err){
+		console.log(err)
+	}
+})
+
+
+app.collections.materies.fetch({
+	success(materies, response, opt){
+		app.collections.modules.fetch({
+			success(modules,response, opt){
+
+				var quill = new Quill('#content', {
+		        	theme: 'snow'
+		        });
+
+		        Vue.component('try_out-item',{
+							template: '#try_out-item-template',
+							props: [ 'id','question', 'materi', 'try_out', 'try_outs' ],
+							methods: {
+								editOnClick: function(try_out){
+									/*var _this = this;
+									collection.fetch({
+										success(col, response, opt){
+											
+											var tmp = col.get({id: question.id})
+											console.log(tmp)
+
+											app.vue.questions.newQuestion = tmp.toJSON();
+											
+											tmp.getAnswer(function(jawaban){
+												app.vue.questions.answer = jawaban.get('answer');
+												$("#create-item").modal('toggle');
+											});
+										},	
+										error(err){
+											console.log(err)
+										}
+									})*/
+								},
+								deleteOnClick: function(try_out){
+									
+									/*var _this = this;
+									//hapus di local
+									app.vue.try_outs.try_outs = app.vue.try_outs.try_outs.filter(function(obj){
+										return obj.id !== try_out.id
+									})
+
+									//hapus di server
+									try_outs.fetch({
+										success(col, response, opt){
+											col.get({id: try_out.id}).destroy({
+												success(data, response, opt){
+													console.log(response._meta.userMessage)
+												},
+												error(err){
+													console.log(err)
+												}
+											});
+										},	
+										error(err){
+											console.log(err)
+										}
+									})*/
+									
+								}
+							},
+						});
+
+				app.vue.materies = new Vue({
+					el: "#materies_place",
+					data:{
+						materies: materies.toJSON(),
+						modules: modules.toJSON(),
+						newMatery:{
+							module_id:'',
+							title:'',
+							content:''
+						}
+					}
+				});
+
+
+
+			},
+			error(err){
+				console.log(err)		
+			}
+		})
+	},
+	error(err){
+		console.log(err)
+	}
+})

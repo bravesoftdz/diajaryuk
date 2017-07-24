@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody id="question_item" >
-                            <tr :questions.sync="questions" v-for="question in questions" is="question-item" :id='question.id' :questions='questions' :question="question" :name='question.question' ></tr>
+                            <tr :questions.sync="questions" v-for="question in questions" is="question-item" :id='question.id' :questions='questions' :question="question" :name='question.question' :answer="answer"></tr>
                         </tbody>
                     </table>
                 </div>
@@ -54,22 +54,7 @@
 
                 <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="store">
 
-                    <!-- <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" name="title" class="form-control" v-model="newItem.title" />
-                        <span v-if="formErrors['title']" class="error text-danger">@{{ formErrors['title'] }}</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="title">Description:</label>
-                        <textarea name="description" class="form-control" v-model="newItem.description"></textarea>
-                        <span v-if="formErrors['description']" class="error text-danger">@{{ formErrors['description'] }}</span>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </div> -->
-
+                  
                     <div class="form-group">
                         <label for="title">Question:</label>
                         <textarea name="txtquestion" class="form-control" v-model="newQuestion.question"></textarea>
@@ -77,22 +62,22 @@
                     </div>
 
                     <div class="form-group" >
-                        <label><input type="radio" name="answer" v-model="newQuestion.answer_1" > Jawaban A </label>
+                        <label><input type="radio" id="radio1" :checked="newQuestion.answer_1 == answer" name="answer" :value="newQuestion.answer_1" v-model="answer" > Jawaban A </label>
                         <input v-model="newQuestion.answer_1" type="input" class="form-control">
                     </div>
 
                     <div class="form-group" >
-                        <label><input type="radio" name="answer" v-model="newQuestion.answer_2" > Jawaban B </label>
+                        <label><input type="radio" id="radio2" name="answer" :checked="newQuestion.answer_2 == answer" :value="newQuestion.answer_2" v-model="answer" > Jawaban B </label>
                         <input v-model="newQuestion.answer_2" type="input" class="form-control">
                     </div>
 
                     <div class="form-group" >
-                        <label><input type="radio" name="answer" v-model="newQuestion.answer_3"> Jawaban C </label>
+                        <label><input type="radio" id="radio3" name="answer" :checked="newQuestion.answer_3 == answer" :value="newQuestion.answer_3" v-model="answer"> Jawaban C </label>
                         <input v-model="newQuestion.answer_3" type="input" class="form-control">
                     </div>
 
                     <div class="form-group" >
-                        <label><input type="radio" name="answer" v-model="newQuestion.answer_4"> Jawaban D </label>
+                        <label><input type="radio" id="radio4" name="answer" :checked="newQuestion.answer_4 == answer" :value="newQuestion.answer_4" v-model="answer"> Jawaban D </label>
                         <input v-model="newQuestion.answer_4" type="input" class="form-control">
                     </div>
 
