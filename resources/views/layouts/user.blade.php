@@ -12,8 +12,8 @@
     <title>Diajaryuk - where learning become fun!</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{url('/').'/vendor/bootstrap/css/bootstrap.min.css'}}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ url('/css/bootstrap.min.css') }}">
+    <link href="{{url('/').'/vendor/bootstrap/css/bootstrap.css'}}" rel="stylesheet">
     <!-- Theme CSS -->
     <link href="{{url('/').'/css/freelancer.min.css'}}" rel="stylesheet">
 
@@ -51,19 +51,31 @@
     <!-- bower components -->
     <script src="{{url('/')}} /bower_components/underscore/underscore.js"></script>
     <script src="{{url('/')}} /bower_components/backbone/backbone.js"></script>
+    <script src="{{ url('/bower_components/vue/dist/vue.js') }}"></script>
+    <script src="{{ url('/bower_components/vue-router/dist/vue-router.js') }}"></script>
     
     <!-- main scripts -->
-    <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
+    <!-- <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
     <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
     <script src="{{ url('/scripts/modules/materies/views/itemView.js') }}"></script>
     <script src="{{ url('/scripts/modules/materies/views/listView.js') }}"></script>
     <script src="{{ url('/scripts/modules') }} /materies/views/parentView.js "></script>
-    
-    <!--  -->
     <script src="{{ url('/scripts/modules').'/modules/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /modules/collections/collection.js "></script>
-    
+     -->
+    <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules').'/modules/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /modules/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/questions/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /questions/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/answers/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /answers/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/try_outs/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /try_outs/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/quizzes/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /quizzes/collections/collection.js "></script>
 
     <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 
@@ -113,6 +125,9 @@
     </div>
 
     <script src="{{url('/scripts/modules/course/router.js')}}"></script>
+
+
+    <script src="{{ url('/js/user.js') }}"></script>
     
 </body>
 

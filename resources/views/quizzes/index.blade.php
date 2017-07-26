@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- <div class="container"> -->
-<div id="try_out_place"> 
+<div id="quizzes_place"> 
     <div class="row">
         <div class="col-md-12 ">
             <div class="panel panel-default">
@@ -11,14 +11,14 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-12">
-                            Try Outs
+                            Quizes
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-item">
-                              Create Try out
+                              Create Quizes
                             </button>
                         </div>
                         
@@ -31,13 +31,13 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Materi Id</th>
+                                <th>Module Id</th>
                                 <th>Question Id</th>
                                 <th colspan="2">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="try_out_item" >
-                            <tr :try_outs.sync="try_outs" v-for="try_out in try_outs" is="try_out-item" :id='try_out.id' :try_outs='try_outs' :try_out="try_out" :materi='try_out.matery.title' :question="try_out.question.question"></tr>
+                        <tbody id="quiz_item" >
+                            <tr :quizzes.sync="quizzes" v-for="quiz in quizzes" is="quiz-item" :id='quiz.id' :quizzes='quizzes' :quiz="quiz" :module="quiz.module.name" :question="quiz.question.question"></tr>
                         </tbody>
                     </table>
                 </div>
@@ -58,14 +58,14 @@
 
                     <div class="form-group" >
                         <label> Materi </label>
-                        <select class="form-control" :materies="materies" v-model="newTryOut.matery_id" >
-                            <option v-for="materi in materies" :value="materi.id"> @{{ materi.title }} </option>
+                        <select class="form-control" :modules="modules" v-model="newQuiz.module_id" >
+                            <option v-for="module in modules" :value="module.id"> @{{ module.name }} </option>
                         </select>
                     </div>
 
                     <div class="form-group" >
                         <label> Question </label>
-                        <select class="form-control" :questions="questions" v-model="newTryOut.question_id" >
+                        <select class="form-control" :questions="questions" v-model="newQuiz.question_id" >
                             <option v-for="question in questions" :value="question.id" > @{{ question.question }} </option>
                         </select>
                     </div>
@@ -83,13 +83,13 @@
     </div>
 </div>
 
-<template id="try_out-item-template">
+<template id="quiz-item-template">
     <tr>
         <td> @{{ id }}</td>
-        <td> @{{ materi }}</td>
+        <td> @{{ module }}</td>
         <td> @{{ question }}</td>
-        <td><button class="btn btn-success form-controll" @click="editOnClick(try_out)" > EDIT </button></td>
-        <td><button class="btn btn-danger form-controll" @click="deleteOnClick(try_out)" > DELETE </button></td>     
+        <td><button class="btn btn-success form-controll" @click="editOnClick(quiz)" > EDIT </button></td>
+        <td><button class="btn btn-danger form-controll" @click="deleteOnClick(quiz)" > DELETE </button></td>     
     </tr>           
 </template>
 <!-- </div> -->

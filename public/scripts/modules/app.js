@@ -325,7 +325,7 @@ app.collections.materies.fetch({
 				
 				app.collections.try_outs.fetch({
 					success(try_outs,response,opt){
-						console.log(try_outs)
+						// console.log(try_outs)
 
 						Vue.component('try_out-item',{
 							template: '#try_out-item-template',
@@ -603,6 +603,149 @@ app.collections.materies.fetch({
 			error(err){
 				console.log(err)		
 			}
+		})
+	},
+	error(err){
+		console.log(err)
+	}
+})
+
+//Quizzes
+app.collections.quizzes.fetch({
+	success(quizzes, response, opt){
+		app.collections.modules.fetch({
+			success(modules, response, opt){
+
+				app.collections.questions.fetch({
+					success(questions, response,opt){
+
+						Vue.component('quiz-item',{
+							template: '#quiz-item-template',
+							props: [ 'id','question', 'module', 'quiz', 'quizzes' ],
+							methods: {
+								editOnClick: function(quiz){
+									
+									var model = quizzes.get({id: quiz.id})
+									if(typeof(model) !== "undefined" ){
+										app.vue.quizzes.newQuiz = model.toJSON();
+									}else{
+										quizzes.fetch({
+											success(col, response, opt){
+												var model =	col.get({id: quiz.id})
+												app.vue.quizzes.newQuiz = model.toJSON();
+											},
+											error(err){
+												console.log(err)
+											}
+										})
+									}
+									$("#create-item").modal('toggle');
+								},
+								deleteOnClick: function(quiz){
+									
+									var _this = this;
+									//hapus di local
+									app.vue.quizzes.quizzes = app.vue.quizzes.quizzes.filter(function(obj){
+										return obj.id !== quiz.id
+									})
+
+									//hapus di server
+									quizzes.fetch({
+										success(col, response, opt){
+											col.get({id: quiz.id}).destroy({
+												success(data, response, opt){
+													console.log(response._meta.userMessage)
+												},
+												error(err){
+													console.log(err)
+												}
+											});
+										},	
+										error(err){
+											console.log(err)
+										}
+									})
+									
+								}
+							},
+						});
+
+						app.vue.quizzes = new Vue({
+							el: '#quizzes_place',
+							data: {
+								modules: modules.toJSON(),
+								questions: questions.toJSON(),
+								quizzes: quizzes.toJSON(),
+								newQuiz: {
+									module_id: '',
+									question_id:''
+								}
+							},
+							methods:{
+								getAll(){
+									var _this = this;
+									quizzes.fetch({
+										success(col,response, opt ){
+
+											col.each(function(model, index){
+												model.getQuestion();
+												model.getModule();
+											})
+
+											_this.quizzes = col.toJSON()
+										},
+										error(err){
+											console.log(err)
+										}
+									})
+								},
+								store(){
+									console.log(this.newQuiz);
+									var _this = this;
+									quizzes.create(
+										this.newQuiz,
+										{
+											success(){
+												console.log('success')
+												_this.getAll();
+												$("#create-item").modal('toggle');
+											},
+											error(err){
+												console.log(err);
+												_this.getAll();
+												$("#create-item").modal('toggle');
+											}
+									});
+
+								},
+								modalOnHide(){
+									console.log('modalOnHide')
+									this.newQuiz = {
+										module_id: '',
+										question_id:''
+									}
+								}
+							},
+							mounted(){
+								$("#create-item").on("hidden.bs.modal", this.modalOnHide);
+							},
+
+
+						});
+
+
+					},
+					error(err){
+						console.log(err)
+					}
+				})
+
+
+			},
+			error(err){
+				console.log(err)
+			}
+
 		})
 	},
 	error(err){

@@ -277,24 +277,13 @@
                         <li>
                             <a href="{{url('/')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                         <li>
                             <a href="{{ url('/admin/modules') }}"><i class="fa fa-table fa-fw"></i> Modules </a>
                         </li>
 
                         <li>
-                            <a href="{{ url('/admin/materies#/materies') }}"><i class="fa fa-table fa-fw"></i> Materi</a>
+                            <a href="{{ url('/admin/materies') }}"><i class="fa fa-table fa-fw"></i> Materi</a>
                         </li>
                         <!-- <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Try outs </a>
@@ -306,7 +295,7 @@
                                     <a href="{{ url('/admin/try_outs') }}">Try outs</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/quizes')}}">Quizes</a>
+                                    <a href="{{url('/admin/quizzes')}}">Quizzes</a>
                                 </li>
                                 <li>
                                     <a href="{{url('/admin/questions')}}">Questions</a>
@@ -335,9 +324,8 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">ADMIN MENU</h1>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
             
             @yield('content')
@@ -384,6 +372,8 @@
     <script src="{{ url('/scripts/modules') }} /answers/collections/collection.js "></script>
     <script src="{{ url('/scripts/modules').'/try_outs/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /try_outs/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/quizzes/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /quizzes/collections/collection.js "></script>
     
     <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
     <script src="{{ url('/scripts/modules/materies/views/itemView.js') }}"></script>
@@ -391,7 +381,7 @@
     <script src="{{ url('/scripts/modules') }} /materies/views/parentView.js "></script>
 
     <!-- vue modules -->
-    <script src="{{ url('/scripts/modules/modules/app.js') }}"></script>
+    <script src="{{ url('/scripts/modules/app.js') }}"></script>
 
     
     

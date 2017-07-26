@@ -21,7 +21,7 @@ class apiCommentController extends Controller
     	];
     }
 
-    public function getId($id)
+    public function getId(Request $id)
     {	
     	//$id = $request->id;
     	$Comment = Comment::find($id);

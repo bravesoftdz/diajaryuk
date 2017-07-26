@@ -23,6 +23,12 @@ Route::prefix('course')->group(function(){
 	Route::get('/', 'courseController@index')->name('overview');	
 });
 
+Route::prefix('play')->group(function(){
+	Route::get('/', 'playController@index');
+	Route::get('/{id}', 'playController@show');
+		
+});
+
 Route::prefix('admin')->group(function () {
     // Route::get('/materies', 'materyController@index' );
 	Route::prefix('materies')->group(function () {
@@ -49,6 +55,13 @@ Route::prefix('admin')->group(function () {
 		Route::get('/', 'modulesController@index');
 		Route::get('/create', 'modulesController@create');
 		Route::get('/create/{id}', 'modulesController@edit');
+		
+	});
+
+	Route::prefix('quizzes')->group(function () {
+		Route::get('/', 'quizzesController@index');
+		Route::get('/create', 'quizzesController@create');
+		Route::get('/create/{id}', 'quizzesController@edit');
 		
 	});
 

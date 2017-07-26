@@ -23,7 +23,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <a href="{{ url('/course/overvew') }}">
+                                <a href="{{ url('/play') }}">
                                 <img class="img-responsive" src=" {{ url('img/profile.png')}}" alt="">
                                 </a>
                             </div>
@@ -42,7 +42,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2 pull-right">
-                                <button class="btn btn-success form-control"> NEXT </button>
+                                <!-- <button class="btn btn-success form-control"> NEXT </button> -->
+                                <a class="btn btn-success form-control" href="{{ url('/play') }}"> NEXT </a>
                             </div>
                         </div>
                     </div>

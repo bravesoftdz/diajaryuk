@@ -19,9 +19,6 @@
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <!-- <a href="#materies/create" class="btn btn-success">
-                                Add
-                            </a>  -->
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-item">
                               Create Matery
                             </button>       
@@ -42,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody id="matery_item">
-                            <tr :materies.sync="materies" v-for="matery in materies" is="matery-item" :id='matery.id' :materies='materies' :matery="matery"  ></tr>
+                            <tr :materies.sync="materies" v-for="matery in materies" is="matery-item" :id='matery.id' :materies='materies' :title="matery.title" :matery="matery" :content="matery.content" :module="matery.module.name"  ></tr>
                         </tbody>
                     </table>
                 </div>
@@ -67,7 +64,8 @@
                     <div class="form-group" >
                         <label> Content </label>
                         <!-- <div id="content" class="ql-editor ql-blank" v-model="newMatery.content"></div> -->
-                        <input type="input" id="content" class="ql-editor ql-blank col-md-12" v-model="newMatery.content" >
+                        <!-- <input type="input" id="content" class="ql-editor ql-blank col-md-12" v-model="newMatery.content" > -->
+                        <textarea id="content" class="ql-editor ql-blank col-md-12" v-model="newMatery.content"></textarea>
                     </div>
 
                     <div class="form-group" >
@@ -89,13 +87,15 @@
 </div>
 
 
-<template>
-    <td> @{{ id }} </td>
-    <td> @{{ title }} </td>
-    <td class="pre-scrollable"> <pre> @{{ content }} </pre></td>
-    <td> @{{ module.name }} </td>
-    <td><button id="btnEdit" class="btn btn-success form-control">Edit</button></td>
-    <td><button id="btnDelete" class="btn btn-danger form-control">Delete</button></td>
+<template id="matery-item-template">
+    <tr>
+        <td> @{{ id }} </td>
+        <td> @{{ title }} </td>
+        <td class="pre-scrollable"> @{{ content }} </td>
+        <td> @{{ module }} </td>
+        <td><button id="btnEdit" class="btn btn-success form-control" @click="editOnClick(matery)" >Edit</button></td>
+        <td><button id="btnDelete" class="btn btn-danger form-control" @click="deleteOnClick(matery)" >Delete</button></td>
+    </tr>
 </template>
 
 <script type="text/template" id="materies_index">
