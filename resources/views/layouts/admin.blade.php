@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Diajaryuk.com</a>
+                <a class="navbar-brand" href="{{ url('/') }}">Diajaryuk.com</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -335,10 +335,10 @@
     </div>
     <!-- /#wrapper -->
     <!-- <script src="https://cdn.quilljs.com/1.2.6/quill.js"></script> -->
-    <script src="{{ url('/js/quill.js') }}"></script>
     <!-- jQuery -->
     <script src="{{ url('/').'/vendor/jquery/jquery.min.js'}}"></script>
-
+    <!-- <script src="{{ url('/js/quill.js') }}"></script> -->
+    <script src="{{ url('/node_modules/vue-quill-editor/dist/index.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url('/').'/vendor/bootstrap/js/bootstrap.min.js'}}"></script>
@@ -374,6 +374,8 @@
     <script src="{{ url('/scripts/modules') }} /try_outs/collections/collection.js "></script>
     <script src="{{ url('/scripts/modules').'/quizzes/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /quizzes/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/comments/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /comments/collections/collection.js "></script>
     
     <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
     <script src="{{ url('/scripts/modules/materies/views/itemView.js') }}"></script>

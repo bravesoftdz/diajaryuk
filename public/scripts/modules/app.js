@@ -456,35 +456,18 @@ app.collections.materies.fetch({
 		app.collections.modules.fetch({
 			success(modules,response, opt){
 
-				// console.log(materies)
+				Vue.use(VueQuillEditor);
 
-				var quill = new Quill('#content', {
+				/*var quill = new Quill('#content', {
 		        	theme: 'snow'
-		        });
+		        });*/
 
 		        Vue.component('matery-item',{
 					template: '#matery-item-template',
 					props: [ 'id', 'title', 'content', 'module', 'matery', 'materies' ],
 					methods: {
 						editOnClick: function(matery){
-							/*var _this = this;
-							collection.fetch({
-								success(col, response, opt){
-									
-									var tmp = col.get({id: question.id})
-									console.log(tmp)
-
-									app.vue.questions.newQuestion = tmp.toJSON();
-									
-									tmp.getAnswer(function(jawaban){
-										app.vue.questions.answer = jawaban.get('answer');
-										$("#create-item").modal('toggle');
-									});
-								},	
-								error(err){
-									console.log(err)
-								}
-							})*/
+							
 							materies.fetch({
 								success(col,response,opt){
 									var tmp = col.get({id: matery.id})
@@ -533,6 +516,17 @@ app.collections.materies.fetch({
 							module_id:'',
 							title:'',
 							content:''
+						},
+						editorOption:{
+							theme: "snow",
+							modules: {
+					            toolbar: [
+					              [{ 'size': ['small', false, 'large'] }],
+					              ['bold', 'italic'],
+					              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+					              ['link', 'image']
+					            ]
+					        }
 						}
 					},
 					methods:{
@@ -590,7 +584,16 @@ app.collections.materies.fetch({
 								content:''
 							}
 
-						}
+						},
+					 	onEditorBlur(editor) {
+					    	// console.log('editor blur!', editor)
+					    },
+				        onEditorFocus(editor) {
+				        	// console.log('editor focus!', editor)
+				        },
+				      	onEditorReady(editor) {
+				        	//console.log('editor ready!', editor)
+				      	}
 					},
 					mounted(){
 						$("#create-item").on("hidden.bs.modal", this.modalOnHide);

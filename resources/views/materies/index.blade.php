@@ -65,11 +65,23 @@
                         <label> Content </label>
                         <!-- <div id="content" class="ql-editor ql-blank" v-model="newMatery.content"></div> -->
                         <!-- <input type="input" id="content" class="ql-editor ql-blank col-md-12" v-model="newMatery.content" > -->
-                        <textarea id="content" class="ql-editor ql-blank col-md-12" v-model="newMatery.content"></textarea>
+                        <!-- <textarea id="content" class="ql-editor ql-blank col-md-12" v-model="newMatery.content"></textarea> -->
+                        <div class="quill-editor-example">
+                            <!-- quill-editor -->
+                            <quill-editor ref="myTextEditor"
+                                          v-model="newMatery.content"
+                                          :options="editorOption"
+                                          @blur="onEditorBlur($event)"
+                                          @focus="onEditorFocus($event)"
+                                          @ready="onEditorReady($event)"
+                                          >
+                            </quill-editor>
+                            
+                        </div>
                     </div>
 
                     <div class="form-group" >
-                        <label> Question </label>
+                        <label> Module </label>
                         <select class="form-control" v-model="newMatery.module_id" >
                             <option v-for="module in modules" :value="module.id" > @{{ module.name }} </option>
                         </select>
@@ -91,12 +103,14 @@
     <tr>
         <td> @{{ id }} </td>
         <td> @{{ title }} </td>
-        <td class="pre-scrollable"> @{{ content }} </td>
+        <td class="pre-scrollable"> <div v-html="content"></div> </td>
         <td> @{{ module }} </td>
         <td><button id="btnEdit" class="btn btn-success form-control" @click="editOnClick(matery)" >Edit</button></td>
         <td><button id="btnDelete" class="btn btn-danger form-control" @click="deleteOnClick(matery)" >Delete</button></td>
     </tr>
 </template>
+
+
 
 <script type="text/template" id="materies_index">
     <div class="row">
