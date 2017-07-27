@@ -538,12 +538,11 @@ app.collections.materies.fetch({
 					methods:{
 						getAll(){
 							var _this = this;
-							// var tmp = [];
 							materies.fetch({
 								success(col, response, opt){
 									
-									var jumlah = col.models.length;
-									var tmp = [];
+									// var jumlah = col.models.length;
+									// var tmp = [];
 
 									/*col.each(function(model, index){
 										model.getModule(function(newModel){
@@ -556,11 +555,12 @@ app.collections.materies.fetch({
 										}
 									})*/
 
-									col.models[jumlah-1].getModule(function(model){
+									/*col.models[jumlah-1].getModule(function(model){
 										console.log('yg terakhir nyampe', col.toJSON() )
 										_this.materies = col.toJSON();	
-									}); //biar yang baru masuk duluan
-									
+									});*/ //biar yang baru masuk duluan
+									console.log( "getAll",col.toJSON() )
+									_this.materies = col.toJSON();
 
 								},
 								error(err){

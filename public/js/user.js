@@ -56,8 +56,26 @@ app.collections.modules.fetch({
 					methods:{
 						cardOnClick(matery){
 							console.log(matery)
+							window.location = "/"+matery.id;
 						}
 					}
+				}
+
+				var app_matery = {
+					template: '#matery-template',
+					props: {
+						matery_id: '',
+						/*materies:{
+							default:function(){
+								return materies.toJSON()
+							}
+						}*/
+					},/*
+					methods:{
+						cardOnClick(matery){
+							console.log(matery)
+						}
+					}*/
 				}				
 				
 				app.vue.router = new VueRouter({
@@ -71,6 +89,13 @@ app.collections.modules.fetch({
 							component: app_materies,//Vue.component("app-materies"),
 							props:true
 						},
+
+						{
+							path: "/matery/:id/:matery_id",
+							component: app_materies,//Vue.component("app-materies"),
+							props:true
+						},
+
 					]
 				});
 
@@ -86,6 +111,7 @@ app.collections.modules.fetch({
 					},
 					component: {
 						"app-materies": app_materies,
+						"app-matery": app_matery,
 					}
 				})
 

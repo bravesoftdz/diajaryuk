@@ -48,16 +48,27 @@
     <template id="materies-template">
         <div>
             <div class="card-deck" :materies="materies" >
-                <div class="card" v-for="matery in materies" @click="cardOnClick(matery)" >
-                        <div class="card-header"> @{{ matery.module }} </div>
+                <div class="card" v-if="matery.module_id == id"  v-for="matery in materies" @click="cardOnClick(matery)" >
+                        <div class="card-header" v-if="matery.module.name" > @{{ matery.module.name }} </div>
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-1 ">
-                                    @{{ matery.title }} - @{{ id }}
+                                    @{{ matery.title }}
                                 </div>
                             </div>
-                        </div>               
+                        </div>
                 </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="matery-template" >
+        <div class="card" @click="cardOnClick">
+            <div class="card-header">
+                @{{matery.title}}
+            </div>
+            <div class="card-content">
+                <span> @{{matery.content}} </span> 
             </div>
         </div>
     </template>
