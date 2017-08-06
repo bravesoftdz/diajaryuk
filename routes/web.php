@@ -23,13 +23,13 @@ Route::prefix('course')->group(function(){
 	Route::get('/', 'courseController@index')->name('overview');	
 });
 
-Route::prefix('play')->group(function(){
+Route::prefix('play')->middleware('auth','check-permission:user|admin|superadmin')->group(function(){
 	Route::get('/', 'playController@index');
 	Route::get('/{id}', 'playController@show');
 		
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth','check-permission:admin|superadmin')->group( function () {
     // Route::get('/materies', 'materyController@index' );
 	Route::prefix('materies')->group(function () {
 		Route::get('/', 'materyController@index');
@@ -52,6 +52,7 @@ Route::prefix('admin')->group(function () {
 	});
 
 	Route::prefix('modules')->group(function () {
+		// Route::get('/',['middleware'=>'check-permission:admin|superadmin', 'uses'=>'modulesController@index'] );
 		Route::get('/', 'modulesController@index');
 		Route::get('/create', 'modulesController@create');
 		Route::get('/create/{id}', 'modulesController@edit');

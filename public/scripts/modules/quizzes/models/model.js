@@ -14,7 +14,21 @@ app.models = app.models || {};
 			var _this = this;
 			var question_id = this.get('question_id')
 			var question = app.collections.questions.get({id: question_id});
-			this.set({question: question.toJSON()})
+			if(typeof(question) !== "undefined" ){
+				
+				this.set({question: question.toJSON()})
+			}else{
+				app.collections.questions.fetch({
+					success(questions, response, opt){
+						var question = questions.get({id: question_id})
+						console.log(question_id)
+						_this.set({question: question.toJSON()})		 
+					},
+					error(err){
+						console.log(err)
+					}
+				})
+			}
 			
 		},
 		getModule(){

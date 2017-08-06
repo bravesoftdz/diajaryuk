@@ -2,14 +2,14 @@
 
 @section('content')
     
-   
+    <!-- langsung muncul -->   
     <div class="container" id="play">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-12 text-center">
                 <h2>Contact Me</h2>
                 <hr class="star-primary">
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 
@@ -78,26 +78,75 @@
                         </div>
                         <div class="col-md-6">
                             <button @click="nextOnClick" class="btn btn-success pull-right">NEXT</button>
+                            <!-- <router-link :to="/try_out"></router-link> -->
                         </div>
                     </div>
-                    <pre> @{{comments}} </pre>
+                    <!-- <pre> @{{comments}} </pre> -->
                 </div>
-                    <app-comment :id="matery.id"  :user_id="{{ Auth::user()->id }}" v-if="show_comments"></app-comment>
-                    <app-comments :id="matery.id" :comments="comments"  v-if="show_comments"></app-comments>
-                
+                    <!-- parents -->
+
+                    <app-comment :id="matery.id"   v-if="show_comments" ></app-comment>
+                    <app-comments :id="matery.id" :comments="comments"  v-if="show_comments" ></app-comments>
+                    
+                    <!-- :user_id="@{{ Auth::user()->id }}" -->
             </div>
         </div>
     </template>
 
+    <template id="tryout-template">
+        <div class="card" >
+            <div class="card-header">
+                <h4 class="card-title">  </h4>
+            </div>
+            <div class="card-block d-flex">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="card-text">  <div v-html="try_out.question.question" ></div> </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- <p class="card-text">  <div v-html="try_out.question.question" ></div> </p> -->
+                                <option>teuing</option>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#"  @click.prevent="commentOnClick" >Comment</a>
+                        </div>
+                        <div class="col-md-6">
+                            <button @click="nextOnClick" class="btn btn-success pull-right">NEXT</button>
+                        </div>
+                    </div>
+                    <!-- <pre> @{{comments}} </pre> -->
+                </div>
+                    <!-- parents -->
+
+                    <app-comment  v-if="show_comments" ></app-comment>
+                    <app-comments v-if="show_comments" ></app-comments>
+                    
+                    <!-- :user_id="@{{ Auth::user()->id }}" -->
+            </div>
+        </div>
+    </template>
+
+    <!-- tempat input comment -->
     <template id="comment-template">
         
         <div class="container-fluid top-buffer">
             
-            <div class="row">
+            <div class="row"  >
                 <div class="col-lg-12">
                     <div class="card">  
-                        <div class="card-block">
-                            <h5 class="card-title">Username</h5>
+                        <div class="card-block" >
+                            
+                            <h5 class="card-title">@{{ username }}</h5>
                             
                             <div class="container-fluid">
                                 <div class="row">
@@ -130,6 +179,7 @@
     
     </template>
 
+    <!-- saat comment di render -->
     <template id="comments-template">
         
         <div class="container-fluid top-buffer">
@@ -147,7 +197,7 @@
         </div>
     
     </template>
-
+    
 
 
 

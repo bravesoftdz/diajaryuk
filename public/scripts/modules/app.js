@@ -80,7 +80,10 @@ app.collections.modules.fetch({
 				saveOnClick(){
 					var _this = this;
 					console.log(this.newModule )
-
+					if( this.newModule.name == "" ){
+						alert("You need to fill the the module name");
+						return false;
+					}
 					collection.create(
 						_this.newModule,
 						{
@@ -203,7 +206,7 @@ app.collections.questions.fetch({
 					answer_2:'',
 					answer_3:'',
 					answer_4:'',
-					point:0,
+					point:10,
 				},
 
 			},
@@ -223,12 +226,12 @@ app.collections.questions.fetch({
 				store(){
 					console.log(this.newQuestion)
 					var _this = this;
-					if(_this.answer == ""){
-						alert('you need to choose right answer first!')
-						return false;
-					}
 					if( this.newQuestion.question == '' ||  this.newQuestion.answer_1 == '' || this.newQuestion.answer_2 == '' || this.newQuestion.answer_3 == '' || this.newQuestion.answer_4 == ''  ){
 						alert('you need to fulfill the whole data first!')
+						return false;
+					}
+					if(_this.answer == ""){
+						alert('you need to choose right answer first!')
 						return false;
 					}
 					collection.create(
@@ -398,6 +401,10 @@ app.collections.materies.fetch({
 								store(){
 									console.log(this.newTryOut);
 									var _this = this;
+									if(this.newTryOut.matery_id == "" || this.newTryOut.question_id == "" ){
+										alert('you need to fulfill a whole data first')
+										return false;
+									}
 									try_outs.create(
 										this.newTryOut,
 										{
@@ -458,9 +465,6 @@ app.collections.materies.fetch({
 
 				Vue.use(VueQuillEditor);
 
-				/*var quill = new Quill('#content', {
-		        	theme: 'snow'
-		        });*/
 
 		        Vue.component('matery-item',{
 					template: '#matery-item-template',
@@ -565,6 +569,10 @@ app.collections.materies.fetch({
 						store(){
 
 							var _this = this;
+							if(this.newMatery.module_id == "" || this.newMatery.title == "" || this.newMatery.content == "" ){
+								alert("you need to fill all the data")
+								return false;
+							}
 							materies.create(this.newMatery,{
 								success(){
 									_this.getAll();
@@ -690,10 +698,10 @@ app.collections.quizzes.fetch({
 									quizzes.fetch({
 										success(col,response, opt ){
 
-											col.each(function(model, index){
-												model.getQuestion();
-												model.getModule();
-											})
+											// col.each(function(model, index){
+											// 	model.getQuestion();
+											// 	model.getModule();
+											// })
 
 											_this.quizzes = col.toJSON()
 										},
@@ -705,6 +713,10 @@ app.collections.quizzes.fetch({
 								store(){
 									console.log(this.newQuiz);
 									var _this = this;
+									if( this.newQuiz.module_id == "" || this.newQuiz.question_id == "" ){
+										alert("you need to fulfill whole data first")
+										return false;
+									}
 									quizzes.create(
 										this.newQuiz,
 										{

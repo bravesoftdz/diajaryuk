@@ -6,12 +6,12 @@
     <script src="{{ url('/scripts/modules/course/overview/listView.js') }}"></script>
     
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-12 text-center">
                 <h2>Contact Me</h2>
                 <hr class="star-primary">
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 

@@ -14,17 +14,22 @@ app.models = app.models || {};
 			var _this = this;
 			var question_id = this.get('question_id')
 			var question = app.collections.questions.get({id: question_id});
-			this.set({question: question.toJSON()})
-			/*app.collections.questions.fetch({
-				success(col, response, opt){
-					var question = col.get({id: question_id})
-					_this.set({question: question.toJSON() }) ;
-					console.log('im model of try_out', _this);
-				},
-				error(err){
-					console.log(err)
-				}
-			})*/
+			if(typeof(question) !== "undefined" ){
+				this.set({question: question.toJSON()})
+			}else{
+				
+				app.collections.questions.fetch({
+					success(col, response, opt){
+						var question = col.get({id: question_id})
+						_this.set({question: question.toJSON() }) ;
+						// console.log('im model of try_out', _this);
+					},
+					error(err){
+						console.log(err)
+					}
+				})
+			}
+
 		},
 		getMatery(){
 			var _this = this;

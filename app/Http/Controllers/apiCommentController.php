@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 use App\Comment;
 use Illuminate\Http\Request;
+use DB;
 
 class apiCommentController extends Controller
 {
     //
 
     public function index(Request $req){
-    	$Comment = Comment::all() ; 	
-    	// return $Comment;
+    	$Comment = DB::table('comments'); //Comment::all() ; 	
+    	
+        if( $req->matery_id ){
+            $Comment = $Comment->where('matery_id','=', $req->matery_id );    
+        }
+
+        $Comment = $Comment->get();
+
     	return [ 
     		'_meta'=>[
     			'status'=> "SUCCESS",

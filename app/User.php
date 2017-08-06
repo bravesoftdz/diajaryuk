@@ -18,6 +18,17 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    //pengen nyoba pake method ini di admin middleware
+    public function checkRole($req){
+        if( $req == 'admin' )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
