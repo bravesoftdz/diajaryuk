@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Comment;
 use Illuminate\Http\Request;
+use App\User;
 use DB;
 
 class apiCommentController extends Controller
@@ -16,12 +17,24 @@ class apiCommentController extends Controller
             $Comment = $Comment->where('matery_id','=', $req->matery_id );    
         }
 
+        if( $req->try_out_id ){
+            $Comment = $Comment->where('try_out_id','=', $req->try_out_id );    
+        }        
+
         $Comment = $Comment->get();
+
+        foreach ($Comment as $key => $value) {
+            # code...
+            $user_id = $value->user_id;
+            $user = User::select('id','name','email')->find($user_id);
+
+            $value->user = $user;
+        }
 
     	return [ 
     		'_meta'=>[
     			'status'=> "SUCCESS",
-    			'userMessage'=> "Data not found",
+    			'userMessage'=> "Data found",
     			'count'=>count($Comment)
     		],
     	 	'result'=>$Comment

@@ -78,7 +78,8 @@ app.collections.modules.fetch({
 													data(){
 														return {
 															show_comments:false,
-															comments: comments.toJSON(),
+
+															// comments: comments.toJSON(),
 														}
 													},
 													
@@ -89,32 +90,29 @@ app.collections.modules.fetch({
 														},
 														commentOnClick(){
 															var _this = this;
+															_this.show_comments = !_this.show_comments;
+															/*var tmpComments = comments.where({matery_id: parseInt(this.id)})
+															console.log( tmpComments )
 															comments.fetch({
 																data:{
-																	matery_id: this.matery.id
+																	matery_id: parseInt(this.id)
 																},
-																success(comments, response, opt){
-																	_this.show_comments = !_this.show_comments;
-																	// console.log(comments);
-																	this.comments = comments.toJSON();
-																	console.log(this.comments)
+																success(col, response, opt){
+																	app.vue.comments.data().comments = col.toJSON();
+																	console.log(app.vue.comments.data().comments);
+																	
 																},
-																error(err){
-																	console.log(err);
-																	alert(err);
+																error(col, response, opt){
+																	alert(opt)
 																}
-															})
-															// console.log(this.comments)
+															})*/		
+															
 														},
 														nextOnClick(){
 															console.log('nextOnClick');
 															var _this = this;
 															// masuk ke link matery/{id}/try_out
 															app.vue.router.replace('/matery/'+this.id+'/try_out')
-
-															//muncul tampilan jika success
-
-															//jika tidak ada makan kembali ke ke module view
 														},
 
 													}
@@ -172,35 +170,23 @@ app.collections.modules.fetch({
 												
 												var bus_comment = new Vue();
 
-												/*var */
+												
 												app.vue.comments = {
 													template: "#comments-template",
-													props: ['id','comments','username'], /*{
-														id: '',
-														comments: { //sama aja kaya [] array
-															default(){
-																return comments.toJSON();
-															}
-														}
-														comments:''
-													}*/
-													/*data(){
-														return {
-															comments: comments.toJSON()
-														}
-													}*/
-												};
-
-												/*var */
-												app.vue.comment = {
-													template: "#comment-template",
-													props: ['id','user_id', 'username']/*{
-														id: '',
-														user_id:'',
-														username:'', //ini akan bermasalah, karena dapat dari Auth bkn ambil dari API users
-
-													}*/,
+													props: ['matery_id', 'try_out_id','user_id', 'username'],
 													data(){
+														if(typeof(this.matery_id) !== "undefined"){
+															var tmp = comments.where({matery_id: parseInt(this.matery_id)});
+															console.log('matery_id', this.matery_id)
+														}
+														else if(typeof(this.try_out_id) !== "undefined"){
+															var tmp = comments.where({try_out_id: parseInt(this.try_out_id)});
+															console.log('try_out_id', this.try_out_id)
+														}
+														for (i in tmp){
+															tmp[i] = tmp[i].toJSON() 
+														}
+														console.log(tmp);
 														return {
 															editorOption:{
 																theme: "snow",
@@ -213,10 +199,11 @@ app.collections.modules.fetch({
 														            ]
 														        }
 															},
-															comments: comments.where({matery_id: this.id }) ,//comments.toJSON(),
+															comments: tmp,
 															newComment: {
 																user_id:'',
 																matery_id: "",
+																try_out_id:"",
 																comment:'',
 															}
 														}
@@ -224,32 +211,27 @@ app.collections.modules.fetch({
 													methods:{
 														getAll(params){
 															_this = this;
-															//kalau params diset, langsung saja refer ke paramas, kalau tidak, fetch ulang
-															/*if( typeof(params) !== "undefined"){
-																_this.comments = params.toJSON(); //bukan this tp harus ganti dari parentnya.
-																app.vue.matery.comments = params.toJSON();
-																console.log( "success getAll" , app.vue.matery.comments );
-															}else{*/
-																
-																comments.fetch({
-																	success(col, response, opt){
-																		_this = col.toJSON();
-																		// app.vue.matery.comments = col.toJSON();
-																		// bus_comment.$emit('getAll', this.comments )
-																		// console.log( "success getAll", app.vue.matery.comments );
-																		app.vue.comments.comments = col.toJSON();
-																		app.vue.matery.comments = col.toJSON();
-																		var data = col.toJSON();
-																		// console.log(app.vue.matery.comments);
-																		bus_comment.$emit('id-selected', data);
-																	},
-																	error(err){
-																		console.log(err);
-																		alert(err)
-																	}
-																})
-															/*}*/
-
+															
+															if(typeof(this.matery_id) !== "undefined"){
+																var tmp = {matery_id: _this.matery_id}//comments.where({matery_id: parseInt(this.id)});
+																console.log('matery_id')
+															}
+															if(typeof(this.try_out_id) !== "undefined"){
+																var tmp = {try_out_id: this.try_out_id}//comments.where({try_out_id: parseInt(this.try_out_id)});
+																console.log('try_out_id')
+															}
+															comments.fetch({
+																data: tmp,
+																success(col, response, opt){
+																	_this.comments = col.toJSON();
+																	
+																},
+																error(err){
+																	console.log(err);
+																	alert(err)
+																}
+															})
+														
 														},
 														sendComment(matery_id){
 															if(this.newComment.comment == ""){
@@ -259,7 +241,8 @@ app.collections.modules.fetch({
 
 															//this.id & this.user_id sudah diisi di template, jd ketika fungsi ini dipanggil
 															// value nya sudah ada. 
-															this.newComment.matery_id = this.id;
+															this.newComment.matery_id = this.matery_id;
+															this.newComment.try_out_id = this.try_out_id;
 															this.newComment.user_id = this.user_id;
 
 															console.log("sendComment", this.newComment );
@@ -270,11 +253,12 @@ app.collections.modules.fetch({
 																	
 																	_this.getAll(col)
 																	console.log("berhasil menyimpan")
-																	app.vue.matery.comments.push(_this.newComment);
+																	// app.vue.matery.comments.push(_this.newComment);
 
 																	_this.newComment = {
 																		user_id:'',
 																		matery_id: "",
+																		try_out_id:"",
 																		comment:'',
 																	}
 																},
@@ -289,9 +273,8 @@ app.collections.modules.fetch({
 													},
 												}
 
-
 												
-												Vue.component('app-comment', app.vue.comment )
+												// Vue.component('app-comment', app.vue.comment )
 												Vue.component('app-comments', app.vue.comments )
 
 												app.vue.router = new VueRouter({

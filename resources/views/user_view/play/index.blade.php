@@ -49,7 +49,7 @@
 
     <!-- saat matery di render judulnya saja -->
     <template id="materies-template">
-        <div>
+        <div >
             <div class="card-deck" :materies="materies" >
                 <div class="card text-center" v-if="matery.module_id == id"  v-for="matery in materies" @click="cardOnClick(matery)" >
                         <div class="card-header" v-if="matery.module.name" > @{{ matery.module.name }} </div>
@@ -91,9 +91,9 @@
                 </div>
                     <!-- parents -->
 
-                    <app-comment :id="matery.id"   v-if="show_comments" ></app-comment>
+                    <!-- <app-comment :id="matery.id"   v-if="show_comments" ></app-comment> -->
                     <!-- cooments dibawah adalah comment dari matery -->
-                    <app-comments :id="matery.id"  :comments="comments" v-if="show_comments" ></app-comments>
+                    <app-comments  :matery_id="matery.id" v-if="show_comments" :user_id="{{ Auth::user()->id }}"   ></app-comments>
                     
                     <!-- :user_id="@{{ Auth::user()->id }}" -->
             </div>
@@ -151,8 +151,9 @@
                 </div>
                     <!-- parents -->
 
-                    <app-comment  v-if="show_comments" ></app-comment>
-                    <app-comments :comments="comments" v-if="show_comments" ></app-comments>
+                    <!-- <app-comment  v-if="show_comments" ></app-comment> -->
+                    <!-- <app-comments :comments="comments" v-if="show_comments" ></app-comments> -->
+                    <app-comments  :try_out_id="try_out.id" v-if="show_comments" :user_id="{{ Auth::user()->id }}"   ></app-comments>
                     
                     <!-- :user_id="@{{ Auth::user()->id }}" -->
             </div>
@@ -160,7 +161,7 @@
     </template>
 
     <!-- tempat input comment -->
-    <template id="comment-template">
+    <!-- <template id="comment-template">
         
         <div class="container-fluid top-buffer">
             
@@ -170,6 +171,67 @@
                         <div class="card-block" >
                             
                             <h5 class="card-title">@{{ username }}</h5>
+                            
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="quill-editor-example">
+                                            
+                                            <quill-editor 
+                                                ref="myTextEditor"
+                                                v-model="newComment.comment"
+                                                :options="editorOption"
+                                                          >
+                                            </quill-editor>
+                                            
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12 top-buffer">
+                                        
+                                        <button  @click="sendComment(id)" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    
+    </template> -->
+
+    <!-- saat comment di render -->
+    <!-- <template id="comments-template">
+        
+        <div class="container-fluid top-buffer">
+            <div class="row" v-for="comment in comments" >
+                <div class="col-lg-12">
+                    <div class="card">  
+                        <div class="card-block">
+                            <h5 class="card-title">@{{ comment.user_id }}</h5>
+                             <p class="card-text"> <div v-html="comment.comment" ></div> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    
+    </template> -->
+    
+    <template id="comments-template">
+        
+        <div class="container-fluid top-buffer">
+            
+            <div class="row"  >
+                <div class="col-lg-12">
+                    <div class="card">  
+                        <div class="card-block" >
+                            
+                            <h5 class="card-title">{{ Auth::user()->name }}</h5>
                             
                             <div class="container-fluid">
                                 <div class="row">
@@ -198,30 +260,19 @@
                 </div>
                 
             </div>
-        </div>
-    
-    </template>
-
-    <!-- saat comment di render -->
-    <template id="comments-template">
-        
-        <div class="container-fluid top-buffer">
             <div class="row" v-for="comment in comments" >
                 <div class="col-lg-12">
                     <div class="card">  
                         <div class="card-block">
-                            <h5 class="card-title">@{{ comment.user_id }}</h5>
+                            <h5 class="card-title">@{{ comment.user.name }}</h5>
                              <p class="card-text"> <div v-html="comment.comment" ></div> </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            
     
     </template>
-    
-
 
 
 

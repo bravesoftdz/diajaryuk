@@ -24,8 +24,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url('/css/quill.snow.css') }}">
     <!-- Custom Fonts -->
     <link href="{{url('/').'/vendor/font-awesome/css/font-awesome.min.css'}}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">   
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">    -->
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/montserat.css') }}">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/lato.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/custom.css') }}">
+    
     <style type="text/css">
         .top-buffer { margin-top:20px; }
     </style>
