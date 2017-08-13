@@ -57,7 +57,7 @@
                 <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="store">
 
                     <div class="form-group" >
-                        <label> Materi </label>
+                        <label> Module </label>
                         <select class="form-control" :modules="modules" v-model="newQuiz.module_id" >
                             <option v-for="module in modules" :value="module.id"> @{{ module.name }} </option>
                         </select>

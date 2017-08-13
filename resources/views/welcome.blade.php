@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.user2')
 @section('content')
     <header>
         <div class="container" id="maincontent" tabindex="-1">

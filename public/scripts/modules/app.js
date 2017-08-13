@@ -271,8 +271,6 @@ app.collections.questions.fetch({
 								})
 
 								
-
-								
 								_this.getAll();
 								$("#create-item").modal('toggle');
 							},

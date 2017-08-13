@@ -38,6 +38,12 @@
                     <h4 class="card-title"> @{{ module.name }} </h4>
                 </div>
             </div>
+            <div class="card text-center" >
+                <div class="card-header" > FINISH </div>
+                <div class="card-block">
+                    <h4 class="card-title"> <a href="{{ route('certificate') }}"> Print Certificate! </a> </h4>
+                </div>
+            </div>
         </div>
     </template>
 
@@ -86,7 +92,8 @@
                     <!-- parents -->
 
                     <app-comment :id="matery.id"   v-if="show_comments" ></app-comment>
-                    <app-comments :id="matery.id" :comments="comments"  v-if="show_comments" ></app-comments>
+                    <!-- cooments dibawah adalah comment dari matery -->
+                    <app-comments :id="matery.id"  :comments="comments" v-if="show_comments" ></app-comments>
                     
                     <!-- :user_id="@{{ Auth::user()->id }}" -->
             </div>
@@ -96,24 +103,40 @@
     <template id="tryout-template">
         <div class="card" >
             <div class="card-header">
-                <h4 class="card-title">  </h4>
+                <h4 class="card-title">Try out</h4>
             </div>
             <div class="card-block d-flex">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="card-text">  <div v-html="try_out.question.question" ></div> </p>
+                                <p class="card-text">  <pre><div v-html="try_out.question.question" ></div></pre> </p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- <p class="card-text">  <div v-html="try_out.question.question" ></div> </p> -->
-                                <option>teuing</option>
+                        <!-- <div class="row"> -->
+                        <div class="col-md-12">
+                            <!-- <p class="card-text">  <div v-html="try_out.question.question" ></div> </p> -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label><input type="radio" name="answer" :value=try_out.question.answer_1 v-model='answer' > @{{ try_out.question.answer_1 }} </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label><input type="radio" name="answer" :value=try_out.question.answer_2 v-model='answer' > @{{ try_out.question.answer_2 }} </label>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label><input type="radio" name="answer" :value=try_out.question.answer_3 v-model='answer' > @{{ try_out.question.answer_3 }} </label>        
+                                </div>
+                                <div class="col-md-6">
+                                    <label><input type="radio" name="answer" :value=try_out.question.answer_4 v-model='answer' > @{{ try_out.question.answer_4 }}</label>        
+                                </div>
+                            </div>
+                            
                         </div>
+                        <!-- </div> -->
                     </div>
 
                     <div class="row">
@@ -129,7 +152,7 @@
                     <!-- parents -->
 
                     <app-comment  v-if="show_comments" ></app-comment>
-                    <app-comments v-if="show_comments" ></app-comments>
+                    <app-comments :comments="comments" v-if="show_comments" ></app-comments>
                     
                     <!-- :user_id="@{{ Auth::user()->id }}" -->
             </div>
@@ -183,7 +206,6 @@
     <template id="comments-template">
         
         <div class="container-fluid top-buffer">
-            
             <div class="row" v-for="comment in comments" >
                 <div class="col-lg-12">
                     <div class="card">  
@@ -195,6 +217,7 @@
                 </div>
             </div>
         </div>
+            
     
     </template>
     

@@ -25,7 +25,8 @@ Route::prefix('course')->group(function(){
 
 Route::prefix('play')->middleware('auth','check-permission:user|admin|superadmin')->group(function(){
 	Route::get('/', 'playController@index');
-	Route::get('/{id}', 'playController@show');
+	// Route::get('/{id}', 'playController@show');
+	Route::get('/certificate', 'playController@certificate' )->name('certificate');
 		
 });
 
