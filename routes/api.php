@@ -25,6 +25,14 @@ Route::prefix('materies')->group(function () {
 	Route::put('/{id}', 'apiMateriesController@update' );
 });
 
+Route::prefix('users')->group(function () {
+    Route::get('/', 'apiUsersController@index' );
+    Route::post('/', 'apiUsersController@store' );
+	Route::get('/{id}', 'apiUsersController@getId' );
+	Route::delete('/{id}', 'apiUsersController@delete' );
+	Route::put('/{id}', 'apiUsersController@update' );
+});
+
 Route::prefix('try_outs')->group(function () {
     Route::get('/', 'apiTryOutController@index' );
     Route::post('/', 'apiTryOutController@store' );
@@ -72,6 +80,15 @@ Route::prefix('modules')->group(function () {
 	Route::get('/{id}', 'apiModulesController@getId' );
 	Route::delete('/{id}', 'apiModulesController@delete' );
 	Route::put('/{id}', 'apiModulesController@update' );
+});
+
+Route::prefix('stages')->group(function () {
+    Route::get('/', 'apiStageController@index' );
+    Route::post('/', 'apiStageController@store' );
+    Route::get('/{id}/materies', 'apiStageController@getIdJoinMateries' );
+	Route::get('/{id}', 'apiStageController@getId' );
+	Route::delete('/{id}', 'apiStageController@delete' );
+	Route::put('/{id}', 'apiStageController@update' );
 });
 
 

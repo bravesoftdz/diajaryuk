@@ -79,6 +79,8 @@
     <script src="{{ url('/scripts/modules') }} /quizzes/collections/collection.js "></script>
     <script src="{{ url('/scripts/modules').'/comments/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /comments/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules').'/stages/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules') }} /stages/collections/collection.js "></script>
 
     <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 

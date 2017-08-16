@@ -30,8 +30,8 @@
 
 
     <template id="user-module-item-template" >
-        <div >
-            <div class="card text-center" @click="cardOnClick(module)" :modules="modules" v-for="module in modules" >  
+        <div>
+            <div class="card text-center" @click="cardOnClick(module)" :user_id="{{ Auth::user()->id }}" :modules="modules" :class="{ disabled: !module.isEnable }" v-for="module in modules" >  
                 <div class="card-header"> @{{ module.name }} </div>
                 <div class="card-block">
                     <img class="img-responsive" v-if="!module.image_path" :src="module.image_path" >
@@ -51,7 +51,7 @@
     <template id="materies-template">
         <div >
             <div class="card-deck" :materies="materies" >
-                <div class="card text-center" v-if="matery.module_id == id"  v-for="matery in materies" @click="cardOnClick(matery)" >
+                <div class="card text-center" v-if="matery.module_id == id" :class="{ disabled: !matery.isEnable }" v-for="matery in materies" @click="cardOnClick(matery)" >
                         <div class="card-header" v-if="matery.module.name" > @{{ matery.module.name }} </div>
                         <div class="card-block">
                             <div class="row">

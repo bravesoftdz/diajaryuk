@@ -20,6 +20,7 @@ class CreateStages extends Migration
             $table->integer('matery_id')->nullable();
             $table->integer('try_out_id')->nullable();
             $table->integer('quiz_id')->nullable();
+            $table->integer('user_id')->nullable();
         });
     }
 
