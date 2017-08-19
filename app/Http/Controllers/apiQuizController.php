@@ -2,18 +2,44 @@
 
 namespace App\Http\Controllers;
 use App\Quiz;
+use App\Question;
+use App\Answer;
 use Illuminate\Http\Request;
+use DB;
 
 class apiQuizController extends Controller
 {
     
     public function index(Request $req){
-    	$Quiz = Quiz::all() ; 	
-    	// return $Quiz;
+    	
+        $module_id = $req->module_id;
+
+        $Quiz = DB::table('quizzes'); //Quiz::all() ; 	
+        if($module_id){
+            $Quiz = $Quiz->where('module_id', '=', $module_id);
+        }
+        $Quiz = $Quiz->get();
+
+        foreach ($Quiz as $key => $value) {
+            # code...
+            $questions = Question::find($value->question_id);
+            $value->question = $questions;
+
+            $answer = Answer::select('answer')->where('question_id','=', $questions->id )->first();
+            $value->answer = $answer;
+
+        }
+
+        if(count($Quiz) == 0 ){
+            $userMessage = "Data not Found";
+        }else{
+            $userMessage = "Data Found";
+        }
+
     	return [ 
     		'_meta'=>[
     			'status'=> "SUCCESS",
-    			'userMessage'=> "Data not found",
+    			'userMessage'=> $userMessage,
     			'count'=>count($Quiz)
     		],
     	 	'result'=>$Quiz
@@ -28,7 +54,8 @@ class apiQuizController extends Controller
 	    	return [ 
 	    		'_meta'=>[
 	    			'status'=> "SUCCESS",
-	    			'userMessage'=> "Data found"
+	    			'userMessage'=> "Data found",
+                    'count'=>count($Quiz)
 	    		],
 	    	 	'result'=>$Quiz
 	    	];	

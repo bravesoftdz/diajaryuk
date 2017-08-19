@@ -5,7 +5,7 @@ app.models = app.models || {};
 	'use strict';
 
 	app.models.questions = Backbone.Model.extend({
-		urlRoot: 'http://localhost/diajaryuk/public/api/questions',
+		urlRoot: app.url + 'questions',//'http://localhost/diajaryuk/public/api/questions',
 		initialize(){
 			this.on('fetch', this.onFetch , this );
 		},

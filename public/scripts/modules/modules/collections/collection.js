@@ -6,7 +6,7 @@ app.collections = app.collections || {};
 
 	var modules = Backbone.Collection.extend({
 		model: app.models.modules,
-		url: 'http://localhost/diajaryuk/public/api/modules',
+		url: app.url + 'modules',//'http://localhost/diajaryuk/public/api/modules',
 		parse: function(response){
 			return response.result;
 		},		

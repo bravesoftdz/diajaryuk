@@ -5,7 +5,7 @@ app.models = app.models || {};
 	'use strict';
 
 	app.models.comments = Backbone.Model.extend({
-		urlRoot: 'http://localhost/diajaryuk/public/api/comments',
+		urlRoot: app.url + 'comments',//'http://localhost/diajaryuk/public/api/comments',
 		
 		initialize(){
 			// console.log('hai im model')

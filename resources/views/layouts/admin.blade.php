@@ -348,33 +348,50 @@
     <!-- /#wrapper -->
     <!-- <script src="https://cdn.quilljs.com/1.2.6/quill.js"></script> -->
     <!-- jQuery -->
-    <script src="{{ url('/').'/vendor/jquery/jquery.min.js'}}"></script>
+    <script src="{{ url('/vendor/jquery/jquery.min.js') }}"></script>
     <!-- <script src="{{ url('/js/quill.js') }}"></script> -->
     <script src="{{ url('/node_modules/vue-quill-editor/dist/index.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ url('/').'/vendor/bootstrap/js/bootstrap.min.js'}}"></script>
+    <script src="{{ url('/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{{ url('/').'/vendor/metisMenu/metisMenu.min.js'}}"></script>
+    <script src="{{ url('/vendor/metisMenu/metisMenu.min.js') }}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="{{ url('/').'/vendor/raphael/raphael.min.js'}}"></script>
-    <script src="{{ url('/').'/vendor/morrisjs/morris.min.js'}} "></script>
-    <script src="{{ url('/').'/data/morris-data.js'}}"></script>
+    <script src="{{ url('/vendor/raphael/raphael.min.js') }}"></script>
+    <script src="{{ url('/vendor/morrisjs/morris.min.js') }} "></script>
+    <script src="{{ url('/data/morris-data.js') }}"></script>
 
     <!-- <script src="https://unpkg.com/vue"></script> -->
 
     <!-- Custom Theme JavaScript -->
-    <script src="{{ url('/').'/dist/js/sb-admin-2.js'}}"></script>
+    <script src="{{ url('/dist/js/sb-admin-2.js') }}"></script>
     
     <!-- bower components -->
-    <script src="{{url('/')}} /bower_components/underscore/underscore.js"></script>
-    <script src="{{url('/')}} /bower_components/backbone/backbone.js"></script>
-    <script src="{{ url('/bower_components/vue/dist/vue.js') }}"></script>
+    <script src="{{url('/bower_components/underscore/underscore.js') }} "></script>
+    <script src="{{url('/bower_components/backbone/backbone.js') }}"></script>
+    <script src="{{url('/bower_components/vue/dist/vue.js') }}"></script>
     
     <!-- main scripts -->
-    <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
+    <script src="{{ url('/scripts/modules/url.js') }}"></script>
+    <script src="{{ url('/scripts/modules/materies/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/modules/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/modules/collections/collection.js') }} "></script>
+    <script src="{{ url('/scripts/modules/questions/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/questions/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/answers/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/answers/collections/collection.js') }} "></script>
+    <script src="{{ url('/scripts/modules/try_outs/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/try_outs/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/quizzes/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/quizzes/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/comments/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/comments/collections/collection.js') }} "></script>
+    <script src="{{ url('/scripts/modules/stages/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/stages/collections/collection.js') }} "></script>
+    <!--<script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
     <script src="{{ url('/scripts/modules').'/modules/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /modules/collections/collection.js "></script>
@@ -392,14 +409,14 @@
     <script src="{{ url('/scripts/modules') }} /materies/views/createView.js "></script>
     <script src="{{ url('/scripts/modules/materies/views/itemView.js') }}"></script>
     <script src="{{ url('/scripts/modules/materies/views/listView.js') }}"></script>
-    <script src="{{ url('/scripts/modules') }} /materies/views/parentView.js "></script>
+    <script src="{{ url('/scripts/modules') }} /materies/views/parentView.js "></script> -->
 
     <!-- vue modules -->
     <script src="{{ url('/scripts/modules/app.js') }}"></script>
 
     
     
-    <script src="{{ url('/scripts/modules') }} /materies/routers/router.js"></script>
+    <script src="{{ url('/scripts/modules/materies/routers/router.js') }}"></script>
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
     
 

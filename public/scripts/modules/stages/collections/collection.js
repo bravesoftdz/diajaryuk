@@ -6,7 +6,7 @@ app.collections = app.collections || {};
 
 	var stages = Backbone.Collection.extend({
 		model: app.models.stages,
-		url: 'http://localhost/diajaryuk/public/api/stages',
+		url: app.url + 'stages',//'http://localhost/diajaryuk/public/api/stages',
 		parse: function(response){
 			return response.result;
 		},		

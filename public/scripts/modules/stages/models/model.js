@@ -5,7 +5,7 @@ app.models = app.models || {};
 	'use strict';
 
 	app.models.stages = Backbone.Model.extend({
-		urlRoot: 'http://localhost/diajaryuk/public/api/stages',
+		urlRoot: app.url + 'stages',//'http://localhost/diajaryuk/public/api/stages',
 		/*parse: function(response){
 			return response.result;
 		},*/

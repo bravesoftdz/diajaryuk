@@ -50,7 +50,7 @@
     <!-- saat matery di render judulnya saja -->
     <template id="materies-template">
         <div >
-            <div class="card-deck" :materies="materies" >
+            <div class="card-deck" >
                 <div class="card text-center" v-if="matery.module_id == id" :class="{ disabled: !matery.isEnable }" v-for="matery in materies" @click="cardOnClick(matery)" >
                         <div class="card-header" v-if="matery.module.name" > @{{ matery.module.name }} </div>
                         <div class="card-block">
@@ -60,6 +60,17 @@
                                 </div>
                             </div>
                         </div>
+                </div>
+            </div>
+            
+            <!-- quiz -->
+            <div @click="quizOnClick()" class="card-deck top-buffer" >
+                <div class="card text-center">
+                    <div class="card-header">QUIZ</div>
+                    <div class="card-block">
+                        <!-- <h4> <a href="{{ url('/play#/module/module.id/quiz') }}">Quiz</a> </h4> -->
+                        <h4>QUIZ</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,6 +171,59 @@
         </div>
     </template>
 
+    <template id="quiz-template">
+        <div>
+            <div class="card" v-for="quiz in quizzes" >
+                <div class="card-header">
+                    <h4 class="card-title">Quiz</h4>
+                </div>
+                <div class="card-block d-flex">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="card-text">  <pre><div v-html="quiz.question.question" ></div></pre> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label><input type="radio" name="answer" :value=quiz.question.answer_1 v-model='answer' > @{{ quiz.question.answer_1 }} </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label><input type="radio" name="answer" :value=quiz.question.answer_2 v-model='answer' > @{{ quiz.question.answer_2 }} </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label><input type="radio" name="answer" :value=quiz.question.answer_3 v-model='answer' > @{{ quiz.question.answer_3 }} </label>        
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label><input type="radio" name="answer" :value=quiz.question.answer_4 v-model='answer' > @{{ quiz.question.answer_4 }}</label>        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button @click="nextOnClick" class="btn btn-success pull-right">NEXT</button>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+            <button class="btn btn-success" @click="onClick()">click me</button>
+        </div> -->
+    </template>
+
+    
     <!-- tempat input comment -->
     <!-- <template id="comment-template">
         

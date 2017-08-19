@@ -6,7 +6,7 @@ app.collections = app.collections || {};
 
 	var materies = Backbone.Collection.extend({
 		model: app.models.materies,
-		url: 'http://localhost/diajaryuk/public/api/materies',
+		url: app.url + 'materies',//'http://localhost/diajaryuk/public/api/materies',
 		parse: function(response){
 			return response.result;
 		},		

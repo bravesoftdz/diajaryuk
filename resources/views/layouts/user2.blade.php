@@ -50,8 +50,8 @@
     <script src="{{url('js/freelancer.min.js')}}"></script>
 
     <!-- bower components -->
-    <script src="{{url('/')}} /bower_components/underscore/underscore.js"></script>
-    <script src="{{url('/')}} /bower_components/backbone/backbone.js"></script>
+    <script src="{{url('/bower_components/underscore/underscore.js')}} "></script>
+    <script src="{{url('/bower_components/backbone/backbone.js')}}"></script>
     <script src="{{ url('/bower_components/vue/dist/vue.js') }}"></script>
     <script src="{{ url('/bower_components/vue-router/dist/vue-router.js') }}"></script>
     
@@ -65,7 +65,7 @@
     <script src="{{ url('/scripts/modules').'/modules/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /modules/collections/collection.js "></script>
      -->
-    <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
+    <!-- <script src="{{ url('/scripts/modules').'/materies/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
     <script src="{{ url('/scripts/modules').'/modules/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /modules/collections/collection.js "></script>
@@ -80,7 +80,25 @@
     <script src="{{ url('/scripts/modules').'/comments/models/model.js' }}"></script>
     <script src="{{ url('/scripts/modules') }} /comments/collections/collection.js "></script>
     <script src="{{ url('/scripts/modules').'/stages/models/model.js' }}"></script>
-    <script src="{{ url('/scripts/modules') }} /stages/collections/collection.js "></script>
+    <script src="{{ url('/scripts/modules') }} /stages/collections/collection.js "></script> -->
+
+    <script src="{{ url('/scripts/modules/url.js') }}"></script>
+    <script src="{{ url('/scripts/modules/materies/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/materies/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/modules/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/modules/collections/collection.js') }} "></script>
+    <script src="{{ url('/scripts/modules/questions/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/questions/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/answers/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/answers/collections/collection.js') }} "></script>
+    <script src="{{ url('/scripts/modules/try_outs/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/try_outs/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/quizzes/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/quizzes/collections/collection.js') }}"></script>
+    <script src="{{ url('/scripts/modules/comments/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/comments/collections/collection.js') }} "></script>
+    <script src="{{ url('/scripts/modules/stages/models/model.js') }}"></script>
+    <script src="{{ url('/scripts/modules/stages/collections/collection.js') }} "></script>
 
     <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 

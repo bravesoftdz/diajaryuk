@@ -5,7 +5,7 @@ app.models = app.models || {};
 	'use strict';
 
 	app.models.modules = Backbone.Model.extend({
-		urlRoot: 'http://localhost/diajaryuk/public/api/modules',
+		urlRoot: app.url + 'modules',//'http://localhost/diajaryuk/public/api/modules',
 		/*parse: function(response){
 			return response.result;
 		},*/

@@ -5,7 +5,7 @@ app.models = app.models || {};
 	'use strict';
 
 	app.models.materies = Backbone.Model.extend({
-		urlRoot: 'http://localhost/diajaryuk/public/api/materies',
+		urlRoot: app.url + 'materies',//'http://localhost/diajaryuk/public/api/materies',
 		
 		initialize(){
 			// console.log('hai im model')
