@@ -26,23 +26,15 @@ success(quizzes, response, opt){
 
 	app.collections.stages.fetch({
 		success(stages, response, opt){
-			Vue.use(VueQuillEditor);
+			// Vue.use(VueQuillEditor);
 
 			//user-module-item
-			Vue.component('user-module-item',{
+			/*Vue.component('user-module-item',{
 				template: '#user-module-item-template',
 				props: ['user_id'],
-				/*props:{
-					modules:{
-						default: function(){
-							return modules.toJSON()
-						} 
-					}
-				},*/
 				data(){
 					var _this = this;
 					modules.each(function(module){
-						// stages = stages.where({module_id: module.id});
 						var tmp = stages.where({
 							user_id: _this.user_id,
 							module_id: module.id
@@ -71,18 +63,13 @@ success(quizzes, response, opt){
 						window.location = "/certificate/";		
 					}
 				},
-			});
+			});*/
 
 			//app-materies template
-			var app_materies = {
+			/*var app_materies = {
 				template: '#materies-template',
 				props: {
 					id: '',
-					/*materies:{
-						default:function(){
-							return materies.toJSON()
-						}
-					}*/
 				},
 				data(){
 					var _this = this;
@@ -95,7 +82,6 @@ success(quizzes, response, opt){
 					})
 
 					materies.each(function(matery){
-						// stages = stages.where({module_id: module.id});
 						var tmp = stages.where({
 							user_id: _this.user_id,
 							matery_id: matery.id
@@ -124,10 +110,10 @@ success(quizzes, response, opt){
 						app.vue.router.push("/module/"+this.id+"/quiz")
 					}
 				}
-			};
+			};*/
 
-			/*var */
-			app.vue.matery = {
+			
+			/*app.vue.matery = {
 				template: '#matery-template',
 				props: {
 					id: '', 
@@ -181,11 +167,11 @@ success(quizzes, response, opt){
 					},
 
 				}
-			};
+			};*/
 
 
 
-			var app_quiz = {
+			/*app.vue.quizzes = {
 				template: '#quiz-template',
 				props: ['id'], //diisi oleh router
 				data(){
@@ -202,9 +188,9 @@ success(quizzes, response, opt){
 						console.log('nextOnClick')
 					}
 				}
-			}
+			}*/
 
-			var app_try_out = {
+			/*app.vue.try_outs = {
 				template: "#tryout-template",
 				props:['id', "comments" ],
 				data(){
@@ -229,13 +215,7 @@ success(quizzes, response, opt){
 						if(this.answer == answer.answer){
 							//alert betul
 							alert("good job!")
-							//jika masih ada matery yang belum, go back to matery view
-							/*if(){
-
-							}else{
-							//jika sudah tidak ada, kembali ke module
-								
-							}*/
+							
 
 						}else{
 							//alert bahwa salah
@@ -251,12 +231,11 @@ success(quizzes, response, opt){
 					}
 				}
 
-			}
+			}*/
 			
-			var bus_comment = new Vue();
-
 			
-			app.vue.comments = {
+			
+			/*app.vue.comments = {
 				template: "#comments-template",
 				props: ['matery_id', 'try_out_id','user_id', 'username'],
 				data(){
@@ -357,12 +336,9 @@ success(quizzes, response, opt){
 					
 				},
 			}
+			Vue.component('app-comments', app.vue.comments )*/
 
-			
-			// Vue.component('app-comment', app.vue.comment )
-			Vue.component('app-comments', app.vue.comments )
-
-			app.vue.router = new VueRouter({
+			/*app.vue.router = new VueRouter({
 				routes: [
 					{
 						path: "/", 
@@ -370,7 +346,7 @@ success(quizzes, response, opt){
 					 },
 					{
 						path: "/module/:id",
-						component: app_materies,//Vue.component("app-materies"),
+						component: app.vue.materies,//app_materies,//Vue.component("app-materies"),
 						props:true
 					},
 
@@ -382,20 +358,20 @@ success(quizzes, response, opt){
 
 					{
 						path: "/matery/:id/try_out",
-						component: app_try_out,//Vue.component("app-materies"),
+						component: app.vue.try_outs,//Vue.component("app-materies"),
 						props:true
 					},
 
 					{
 						path: "/module/:id/quiz",
-						component: app_quiz,//Vue.component("app-materies"),
+						component: app.vue.quizzes,//Vue.component("app-materies"),
 						props:true
 					},
 
 				]
-			});
+			});*/
 
-			app.vue.user = new Vue({
+			/*app.vue.user = new Vue({
 				el: "#play",
 				router: app.vue.router,
 				data(){ 
@@ -407,14 +383,9 @@ success(quizzes, response, opt){
 
 						}
 					}
-				},/*
-				components: {
-					"app-materies": app_materies,
-					"app-matery": app.vue.matery,
-					"app-comments": app.vue.comments,
-				},*/
+				},
 
-			})
+			})*/
 		},
 		error(){
 			console.log('stages error');

@@ -4,12 +4,6 @@
     
     <!-- langsung muncul -->   
     <div class="container" id="play">
-        <!-- <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Contact Me</h2>
-                <hr class="star-primary">
-            </div>
-        </div> -->
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 
@@ -314,7 +308,7 @@
                                     </div>
                                     <div class="col-md-12 top-buffer">
                                         <!-- id dibawah adalah matery id -->
-                                        <button  @click="sendComment(id)" class="btn btn-success">Submit</button>
+                                        <button  @click="sendComment(matery_id)" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>
                             </div>

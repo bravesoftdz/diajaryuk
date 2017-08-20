@@ -96,7 +96,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="{{ url('/course/overview') }}">Start Course</a>
+                <a class="navbar-brand" href="{{ url('/') }}">Start Course</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -123,14 +123,15 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->name }} <!-- <span class="caret"></span> -->
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();"
+                                        style="color: black;"  >
                                         Logout
                                     </a>
 
@@ -159,9 +160,20 @@
 
     <script src="{{url('/scripts/modules/course/router.js')}}"></script>
 
-
-    <script src="{{ url('/js/user.js') }}"></script>
+    <!-- main user js, nanti akan diganti -->
+    <script src="{{ url('/scripts/modules/modules/vue/view.js') }}"></script>
+    <script src="{{ url('/scripts/modules/materies/vue/view.js') }}"></script>
+    <script src="{{ url('/scripts/modules/comments/vue/view.js') }}"></script>
+    <script src="{{ url('/scripts/modules/try_outs/vue/view.js') }}"></script>
+    <script src="{{ url('/scripts/modules/quizzes/vue/view.js') }}"></script>
     
+    <script src="{{ url('/scripts/modules/routers/router.js') }}"></script>
+    <!-- <script src="{{ url('/scripts/modules/users/vue/view.js') }}"></script> -->
+    <!-- user js udah ga kepake -->
+    <!-- <script src="{{ url('/js/user.js') }}"></script>  -->
+
+
+
 </body>
 
 </html>

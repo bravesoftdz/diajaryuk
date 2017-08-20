@@ -3,20 +3,56 @@
 namespace App\Http\Controllers;
 use App\Matery;
 use Illuminate\Http\Request;
+use DB;
 
 class apiMateriesController extends Controller
 {
     public function index(Request $req){
-    	$Matery = Matery::all() ; 	
-    	// return $Matery;
-    	return [ 
-    		'_meta'=>[
+        $module_id = $req->module_id;
+    	$Matery = DB::table('materies'); 	
+    	
+        if($module_id){
+            $Matery = $Matery->where('module_id','=',$module_id);
+        }
+
+        $Matery = $Matery->get();
+        foreach ($Matery as $key => $value) {
+            # code...
+            $value->index = $key;
+        }
+
+        return [ 
+            '_meta'=>[
+                'status'=> "SUCCESS",
+                'userMessage'=> "Data not found",
+                'count'=>count($Matery)
+            ],
+            'result'=>$Matery
+        ];
+
+        // $Matery = $Matery->paginate(1);
+
+    	/*return [ 
+            '_meta'=>[
     			'status'=> "SUCCESS",
     			'userMessage'=> "Data not found",
     			'count'=>count($Matery)
     		],
     	 	'result'=>$Matery
-    	];
+    	];*/
+        
+        //yang bener.
+        
+        /*$_meta = $Matery->paginate(1);
+        $_meta = $_meta->toArray();
+        unset($_meta['data']);
+
+        return [ 
+            '_meta'=>$_meta,
+            'result'=>$Matery->get()//->paginate(1)->toArray()['data']
+        ];*/
+
+
     }
 
     public function getId($id)

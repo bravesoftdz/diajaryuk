@@ -2,18 +2,37 @@
 
 namespace App\Http\Controllers;
 use App\Try_out;
+use App\Question;
+use App\Answer;
 use Illuminate\Http\Request;
+use DB;
 
 class apiTryOutController extends Controller
 {
     
     public function index(Request $req){
-    	$try_out = Try_out::all() ; 	
-    	// return $try_out;
-    	return [ 
+    	$try_out = DB::table('try_outs'); //Try_out::all() ; 	
+    	$matery_id = $req->matery_id;
+        
+        if($matery_id){
+            $try_out = $try_out->where('matery_id','=',$matery_id);
+        }
+
+        $try_out = $try_out->get();
+
+        foreach ($try_out as $key => $value) {
+            # code...
+            $question = Question::find($value->question_id);
+            $value->question = $question;
+
+            $answer = Answer::select('answer')->where('question_id','=', $question->id )->first();
+            $value->answer = $answer;
+        }
+
+        return [ 
     		'_meta'=>[
     			'status'=> "SUCCESS",
-    			'userMessage'=> "Data not found",
+    			'userMessage'=> "Data found",
     			'count'=>count($try_out)
     		],
     	 	'result'=>$try_out
@@ -25,6 +44,16 @@ class apiTryOutController extends Controller
     	//$id = $request->id;
     	$try_out = Try_out::find($id);
     	if($try_out !== null ){
+
+            foreach ($try_out as $key => $value) {
+                # code...
+                $question = Question::find($value->question_id);
+                $value->question = $question;
+
+                $answer = Answer::select('answer')->where('question_id','=', $question->id )->first();
+                $value->answer = $answer;
+            }
+
 	    	return [ 
 	    		'_meta'=>[
 	    			'status'=> "SUCCESS",
