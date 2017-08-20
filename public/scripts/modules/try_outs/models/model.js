@@ -7,8 +7,8 @@ app.models = app.models || {};
 	app.models.try_outs = Backbone.Model.extend({
 		urlRoot: app.url + 'try_outs',//'http://localhost/diajaryuk/public/api/try_outs',
 		initialize(){
-			this.getQuestion();
-			this.getMatery();
+			// this.getQuestion();
+			// this.getMatery();
 		},
 		getQuestion(){
 			var _this = this;

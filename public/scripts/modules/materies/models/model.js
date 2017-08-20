@@ -9,7 +9,7 @@ app.models = app.models || {};
 		
 		initialize(){
 			// console.log('hai im model')
-			this.getModule();
+			// this.getModule();
 		},	
 		getModule(callback){
 			var _this = this;

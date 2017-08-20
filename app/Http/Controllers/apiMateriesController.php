@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Matery;
+use App\Module;
 use Illuminate\Http\Request;
 use DB;
 
@@ -18,6 +19,8 @@ class apiMateriesController extends Controller
         $Matery = $Matery->get();
         foreach ($Matery as $key => $value) {
             # code...
+            $module = Module::select('id',"name", "image_path")->find($value->module_id);
+            $value->module = $module;
             $value->index = $key;
         }
 

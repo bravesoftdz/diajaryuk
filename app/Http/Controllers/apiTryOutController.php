@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Try_out;
 use App\Question;
 use App\Answer;
+use App\Matery;
 use Illuminate\Http\Request;
 use DB;
 
@@ -18,13 +19,26 @@ class apiTryOutController extends Controller
             $try_out = $try_out->where('matery_id','=',$matery_id);
         }
 
-        $try_out = $try_out->get();
+        $try_out = $try_out->select('id','matery_id','question_id')->get();
 
         foreach ($try_out as $key => $value) {
             # code...
             $question = Question::find($value->question_id);
             $value->question = $question;
 
+            $matery = Matery::select('id','title','module_id')->find($value->matery_id);
+            $value->matery = $matery;
+
+            $materies = Matery::select('id','title')->where('module_id','=', $matery->module_id)->paginate(1);
+            /*foreach ($materies as $k => $v) {
+                # code...
+                $v->index = $k;
+            }*/
+
+            $materies->appends(['matery_id' => $matery->id ])->links();
+
+            $value->materies = $materies;
+            
             $answer = Answer::select('answer')->where('question_id','=', $question->id )->first();
             $value->answer = $answer;
         }

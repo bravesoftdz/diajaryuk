@@ -18,6 +18,7 @@ app.vue = app.vue || {};
 			return {
 				materies: '',//materies.toJSON(),
 				materies_per_module: '',//materies_per_module,
+				_meta:'',
 				quiz_link: '',
 			}
 		},
@@ -31,7 +32,10 @@ app.vue = app.vue || {};
 					success(stages, response, opt){
 						_this.stages = stages;
 
+						var objectData = {module_id: _this.id}
+
 						app.collections.materies.fetch({
+							data: objectData,
 							success(materies, response, opt){
 								materies.each(function(module){
 									// stages = stages.where({module_id: module.id});
@@ -48,6 +52,7 @@ app.vue = app.vue || {};
 								});
 
 								_this.materies = materies.toJSON()
+								_this._meta = response._meta;
 								// console.log(_this.materies)
 							},
 							error(materies, response, opt){
@@ -73,7 +78,8 @@ app.vue = app.vue || {};
 	app.vue.matery = {
 		template: '#matery-template',
 		props: {
-			id: '', 
+			id: '',
+			 
 			/*matery: {
 				default:function(){
 					return this.materies.get({id: this.id }).toJSON() 
@@ -87,11 +93,17 @@ app.vue = app.vue || {};
 				materies: '',
 				matery: '',
 				try_outs: '',
+				_meta:'',
+				module_id:'',
 			}
 		},
 
 		created(){
 			this.fetchData()
+		},
+
+		watch:{
+			'$route': 'fetchData'
 		},
 		
 		methods:{
@@ -103,6 +115,7 @@ app.vue = app.vue || {};
 						_this.stages = stages;
 
 						app.collections.materies.fetch({
+							// data:objectData,
 							success(materies, response, opt){
 								materies.each(function(matery){
 									// stages = stages.where({module_id: module.id});
@@ -119,8 +132,30 @@ app.vue = app.vue || {};
 								});
 
 								_this.materies = materies; //.toJSON()
-								_this.matery = materies.get({id: _this.id }).toJSON(),
-								console.log(_this.materies)
+								_this.matery = materies.get({id: _this.id }).toJSON()
+								_this._meta = response._meta
+								console.log(_this.module_id)
+
+								if(!_this.module_id){ //typeof(_this.module_id) == "undefined"
+									console.log(_this.module_id)
+									_this.module_id = _this.matery.module_id;
+									var objectData = {module_id: _this.module_id}
+									materies.fetch({
+										data:objectData,
+										success(materies, response, opt){
+											_this.materies = materies; //.toJSON()
+											_this.matery = materies.get({id: _this.id }).toJSON()
+											_this._meta = response._meta;
+											console.log(_this._meta, _this.matery)											
+										},
+										error(materies, response, opt){
+											console.log(materies, response, opt)
+										}										
+									})
+								}
+
+								// console.log(_this._meta, _this.matery)
+
 							},
 							error(materies, response, opt){
 								console.log(materies, response, opt)
@@ -166,10 +201,24 @@ app.vue = app.vue || {};
 				}else{
 					//jika tidak, masuk ke matery.id selanjutnya
 
-					
+					//jika this.matery.index < this._meta.count then this.matery.index++
+					console.log(this.matery.index , this._meta.count)
+					if(this.matery.index < this._meta.count){
+						var index = this.matery.index;
+						var next = this.materies.where({
+							index: ++index
+						})
+
+						var nextId = next[0].get("id");
+						console.log(next, index, nextId);
+						app.vue.router.replace('/matery/'+nextId)	
+
+					}else{
+						alert('matery index == _meta.count')
+					}
 				}
 
-				console.log(try_out, this.try_outs, this.matery_id)
+				// console.log(try_out, this.try_outs, this.matery_id)
 
 
 
