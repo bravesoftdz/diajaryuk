@@ -27,18 +27,39 @@ class apiTryOutController extends Controller
             $value->question = $question;
 
             $matery = Matery::select('id','title','module_id')->find($value->matery_id);
-            $value->matery = $matery;
 
-            $materies = Matery::select('id','title')->where('module_id','=', $matery->module_id)->paginate(1);
-            /*foreach ($materies as $k => $v) {
+            $materies = Matery::select('id','title')->where('module_id','=', $matery->module_id)->get();
+            foreach ($materies as $k => $v) {
                 # code...
                 $v->index = $k;
-            }*/
+                //cari dari materies yang id nya == matery.id, ambil indexnya.
+                if($matery->id == $v->id){
+                    //jika ketemu,
+                    $matery->index = $k;
+                    $matery->total = count($materies);
+                    //jika masih ada matery selanjutnya
+                    if(isset($materies[$k+1])){
+                        $matery->next_id = $materies[$k+1]->id;
+                    }else{
+                        $matery->next_id = null;
+                    }
 
-            $materies->appends(['matery_id' => $matery->id ])->links();
+                    if(isset($materies[$k-1])){
+                        $matery->prev_id = $materies[$k-1]->id;
+                    }else{
+                        $matery->prev_id = null;
+                    }
+                }    
+            }
+            // $materies->appends(['matery_id' => $matery->id ])->links();
 
-            $value->materies = $materies;
+
+            $value->matery = $matery;
+            // $value->materies = $materies;
             
+
+
+
             $answer = Answer::select('answer')->where('question_id','=', $question->id )->first();
             $value->answer = $answer;
         }

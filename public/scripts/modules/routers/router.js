@@ -33,6 +33,12 @@ app.vue = app.vue || {};
 				props:true
 			},
 
+			{
+				path: "/module/:id/quiz/:quiz_index",
+				component: app.vue.quizzes,//Vue.component("app-materies"),
+				props:true
+			},
+
 		]
 	});
 

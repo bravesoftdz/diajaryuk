@@ -7,8 +7,8 @@ app.models = app.models || {};
 	app.models.quizzes = Backbone.Model.extend({
 		urlRoot: app.url + 'quizzes',//'http://localhost/diajaryuk/public/api/quizzes',
 		initialize(){
-			this.getQuestion();
-			this.getModule();
+			/*this.getQuestion();
+			this.getModule();*/
 		},
 		getQuestion(){
 			var _this = this;

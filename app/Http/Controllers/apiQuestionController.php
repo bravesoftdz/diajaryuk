@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Question;
+use App\Answer;
 use Illuminate\Http\Request;
 
 class apiQuestionController extends Controller
@@ -11,6 +12,13 @@ class apiQuestionController extends Controller
     public function index(Request $req){
     	$Question = Question::all() ; 	
     	// return $Question;
+
+        foreach ($Question as $key => $value) {
+            # code...
+            $answer = Answer::select('id','question_id','answer')->where('question_id','=', $value->id)->first();
+            $value->answer = $answer;
+        }
+
     	return [ 
     		'_meta'=>[
     			'status'=> "SUCCESS",

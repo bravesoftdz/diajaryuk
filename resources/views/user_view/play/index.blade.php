@@ -167,7 +167,8 @@
 
     <template id="quiz-template">
         <div>
-            <div class="card" v-for="quiz in quizzes" >
+            <!-- tadinya pake v-for="quiz in quizzes" -->
+            <div class="card" >
                 <div class="card-header">
                     <h4 class="card-title">Quiz</h4>
                 </div>

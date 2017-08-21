@@ -32,6 +32,7 @@
 				try_out: tmp,//try_outs.where({matery_id: parseInt(this.id) }),
 				answer: '',
 				_meta: '',
+
 				show_comments:false
 			}		
 		},
@@ -73,28 +74,16 @@
 					//alert betul
 					alert("good job!")
 					//jika masih ada matery yang belum, go back to matery view //materies view (/module/{id})
-					console.log(this.try_out)
-					if(this.try_out.materies.next_page_url !== null ){ //masih ada materi selanjutnya.
-						
-						$.ajax({
-							url: this.try_out.materies.next_page_url,
-							success(result){
-								console.log(result.result)
-								var next_matery_id = result.result[0].materies.data[0].id;
-								app.vue.router.replace('/matery/'+next_matery_id);	
-							},
-							error(){
-								console.log('error next matery_id')
-							} 
-						});	
-
-						// var next_matery_id = this.try_out.materies.data.data[0].id;
-						// app.vue.router.replace('/matery/'+next_matery_id);
-					
+					var next_id = this.try_out.matery.next_id;
+					console.log(next_id, this.try_out)
+					if( next_id !== null ){ //masih ada materi selanjutnya.
+						app.vue.router.replace('/matery/'+next_id);
 					}else{
-					//jika sudah tidak ada, kembali ke module
-						
+						//jika sudah tidak ada, kembali ke module
+						app.vue.router.replace('/');
 					}
+						
+						
 
 				}else{
 					//alert bahwa salah

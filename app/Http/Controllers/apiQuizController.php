@@ -28,6 +28,25 @@ class apiQuizController extends Controller
             $answer = Answer::select('answer')->where('question_id','=', $questions->id )->first();
             $value->answer = $answer;
 
+            $value->index = $key;
+            if(isset( $Quiz[$key+1] )){
+                $value->next_id = $Quiz[$key+1]->id;
+                $value->next_index = $key+1;
+            }else{
+                $value->next_id = null;
+                $value->next_index = null;
+            }
+
+            if(isset($Quiz[$key-1])){
+                $value->prev_id = $Quiz[$key-1]->id;
+                $value->prev_index = $key-1;
+                
+            }else{
+                $value->prev_id = null;
+                $value->prev_id = null;
+                
+            }
+
         }
 
         if(count($Quiz) == 0 ){

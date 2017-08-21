@@ -7,11 +7,6 @@ app.vue = app.vue || {};
 		template: '#materies-template',
 		props: {
 			id: '',
-			/*materies:{
-				default:function(){
-					return materies.toJSON()
-				}
-			}*/
 		},
 		data(){
 			var _this = this;
@@ -19,6 +14,7 @@ app.vue = app.vue || {};
 				materies: '',//materies.toJSON(),
 				materies_per_module: '',//materies_per_module,
 				_meta:'',
+				materies_backbone:'',
 				quiz_link: '',
 			}
 		},
@@ -51,7 +47,8 @@ app.vue = app.vue || {};
 									module.set({isEnable: isEnable})
 								});
 
-								_this.materies = materies.toJSON()
+								_this.materies = materies.toJSON();
+								_this.materies_backbone = materies;
 								_this._meta = response._meta;
 								// console.log(_this.materies)
 							},
@@ -79,12 +76,6 @@ app.vue = app.vue || {};
 		template: '#matery-template',
 		props: {
 			id: '',
-			 
-			/*matery: {
-				default:function(){
-					return this.materies.get({id: this.id }).toJSON() 
-				}
-			},*/
 			materies_per_module:'',
 		},
 		data(){
@@ -136,7 +127,7 @@ app.vue = app.vue || {};
 								_this._meta = response._meta
 								console.log(_this.module_id)
 
-								if(!_this.module_id){ //typeof(_this.module_id) == "undefined"
+								if(_this.module_id == ''){ //typeof(_this.module_id) == "undefined"
 									console.log(_this.module_id)
 									_this.module_id = _this.matery.module_id;
 									var objectData = {module_id: _this.module_id}
@@ -146,6 +137,7 @@ app.vue = app.vue || {};
 											_this.materies = materies; //.toJSON()
 											_this.matery = materies.get({id: _this.id }).toJSON()
 											_this._meta = response._meta;
+											_this.module_id = '';
 											console.log(_this._meta, _this.matery)											
 										},
 										error(materies, response, opt){
@@ -167,6 +159,11 @@ app.vue = app.vue || {};
 						console.log(stages, response, opt)
 					}
 				})
+
+				/*_this.materies = app.vue.materies.materies_backbone;
+				_this.matery = _this.materies.get({id: _this.id }).toJSON()
+				console.log("im this materies",_this.materies)
+				*/
 
 				app.collections.try_outs.fetch({
 					success(try_outs,response,error){
@@ -203,7 +200,7 @@ app.vue = app.vue || {};
 
 					//jika this.matery.index < this._meta.count then this.matery.index++
 					console.log(this.matery.index , this._meta.count)
-					if(this.matery.index < this._meta.count){
+					if(this.matery.index < this._meta.count - 1 ){
 						var index = this.matery.index;
 						var next = this.materies.where({
 							index: ++index
@@ -214,7 +211,8 @@ app.vue = app.vue || {};
 						app.vue.router.replace('/matery/'+nextId)	
 
 					}else{
-						alert('matery index == _meta.count')
+						// alert('matery index == _meta.count')
+						app.vue.router.replace('/');						
 					}
 				}
 
